@@ -15,16 +15,16 @@ def test():
 
     m = pw.FindM(k,L,c,p,d,s,0, False)
 
-    #try:
+    #initialize context
     context = pw.FHEcontext(m, p, r, a, b)
-    #except Exception as e: print (e)
+    #modify the context
     pw.buildModChain(context, L, c, 0)
-    #pw.writeContext(context)
-    context.zMStar.printout()
 
-    #Pa = PAlgebra()
+    publicKey = pw.FHEPubKey()
+    secretKey = pw.FHESecKey()
 
-    #G = pw.FHEcontext.PAlgebraMod.getFactorsOverZZ(0)
+    G = context.alMod.getFactorsOverZZ()[0]
+
 
 
 if __name__ == "__main__":
