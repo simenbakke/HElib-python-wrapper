@@ -4,6 +4,8 @@
 #include <NTL/lzz_pXFactoring.h>
 #include <boost/python.hpp>
 #include <boost/python/suite/indexing/vector_indexing_suite.hpp>
+#include "EncryptedArray.h"
+
 //#include <boost/python/long.hpp>
 //#include <boost/python/docstring_options.hpp>
 #include <Python.h>
@@ -62,6 +64,7 @@ BOOST_PYTHON_MODULE(PythonWrapper)
   def("FindM", FindM);
   def("buildModChain", buildModChain);
   def("function", temp_function);
+  def("addSome1DMatrices", addSome1DMatrices);
   //def("getFactorsPython", getFactorsPython);
 
   //Vector converter for python
@@ -101,20 +104,39 @@ BOOST_PYTHON_MODULE(PythonWrapper)
 
   ;
 
-  class_<FHEPubKey>("FHEPubKey", no_init)
+  class_<FHEPubKey>("FHEPubKey")
+    .def(init<FHEcontext&>())
+    .def("Encrypt", &FHEPubKey::Encrypt)
   ;
 
   class_<FHESecKey, bases<FHEPubKey> >("FHESecKey", no_init)
-    //.def("__init__", make_constructor(&FHEPubKey::FHEPubKey))
+    .def(init<FHEcontext&>())
+    .def("GenSecKey", &FHESecKey::GenSecKey)
+
+
+    //.def(init<&FHEPubKey::FHEPubKey>())
     //.def(init<&FHEPubKey(const FHEcontext& _context)>())
 
   ;
+
+  class_<Ctxt>("Ctxt", no_init)
+    .def(init<const FHEPubKey&, long>())
   // scope in_base = class_<EncryptedArrayBase>("EncryptedArrayBase", no_init)
   //
   // ;
+  ;
+  {
+    class_<EncryptedArrayBase, boost::noncopyable>("EncryptedArrayBase", no_init)
 
-  // class_<EncryptedArray>("EncryptedArray", no_init)
-  //
-  // ;
+    ;
 
+    void (EncryptedArray::*e1)(Ctxt&, const FHEPubKey&, const pyvector&) const = &EncryptedArray::encrypt;
+    // void (EncryptedArray::*e2)(Ctxt&, const FHEPubKey&, const vector<ZZX>&) = &EncryptedArray::encrypt;
+    // void (EncryptedArray::*e3)(Ctxt&, const FHEPubKey&, const NewPlaintextArray&) = &EncryptedArray::encrypt;
+
+    class_<EncryptedArray>("EncryptedArray", no_init)
+      .def(init<const FHEcontext&, const ZZX&>())
+      .def("encrypt", e1)
+    ;
+  }
 }
