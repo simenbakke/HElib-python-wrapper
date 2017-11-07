@@ -44,16 +44,21 @@ using namespace boost::python;
 //
 // }
 
-void temp_function(const FHEcontext& context){
+Ctxt Ctxt_sum(Ctxt& ct1, Ctxt& ct2){
 
-  if (context.ea == NULL){
-    cout << "fucked";
-  }
-  else{
-    cout << "works";
-  }
+  Ctxt ctSum = ct1;
+  ctSum += ct2;
+
+  return ctSum;
 }
 
+Ctxt Ctxt_prod(Ctxt& ct1, Ctxt& ct2){
+
+  Ctxt ctSum = ct1;
+  ctSum *= ct2;
+
+  return ctSum;
+}
 
 
 BOOST_PYTHON_MODULE(PythonWrapper)
@@ -63,7 +68,8 @@ BOOST_PYTHON_MODULE(PythonWrapper)
 
   def("FindM", FindM);
   def("buildModChain", buildModChain);
-  def("function", temp_function);
+  def("Ctxt_sum", Ctxt_sum);
+  def("Ctxt_prod", Ctxt_prod);
   def("addSome1DMatrices", addSome1DMatrices);
   //def("getFactorsPython", getFactorsPython);
 
@@ -105,12 +111,12 @@ BOOST_PYTHON_MODULE(PythonWrapper)
   ;
 
   class_<FHEPubKey>("FHEPubKey")
-    .def(init<FHEcontext&>())
-    .def("Encrypt", &FHEPubKey::Encrypt)
+    .def(init<const FHEcontext&>())
+    .def("keyExists", &FHEPubKey::keyExists)
   ;
 
   class_<FHESecKey, bases<FHEPubKey> >("FHESecKey", no_init)
-    .def(init<FHEcontext&>())
+    .def(init<const FHEcontext&>())
     .def("GenSecKey", &FHESecKey::GenSecKey)
 
 
@@ -121,22 +127,26 @@ BOOST_PYTHON_MODULE(PythonWrapper)
 
   class_<Ctxt>("Ctxt", no_init)
     .def(init<const FHEPubKey&, long>())
+    .def("isCorrect", &Ctxt::isCorrect)
   // scope in_base = class_<EncryptedArrayBase>("EncryptedArrayBase", no_init)
   //
   // ;
   ;
   {
-    class_<EncryptedArrayBase, boost::noncopyable>("EncryptedArrayBase", no_init)
-
-    ;
+    // class_<EncryptedArrayBase, boost::noncopyable>("EncryptedArrayBase", no_init)
+    //
+    // ;
 
     void (EncryptedArray::*e1)(Ctxt&, const FHEPubKey&, const pyvector&) const = &EncryptedArray::encrypt;
+    void (EncryptedArray::*d1)(const Ctxt&, const FHESecKey&, pyvector&) const = &EncryptedArray::decrypt;
     // void (EncryptedArray::*e2)(Ctxt&, const FHEPubKey&, const vector<ZZX>&) = &EncryptedArray::encrypt;
     // void (EncryptedArray::*e3)(Ctxt&, const FHEPubKey&, const NewPlaintextArray&) = &EncryptedArray::encrypt;
 
     class_<EncryptedArray>("EncryptedArray", no_init)
       .def(init<const FHEcontext&, const ZZX&>())
       .def("encrypt", e1)
+      .def("decrypt", d1)
+      .def("getTag", &EncryptedArray::getTag)
     ;
   }
 }
