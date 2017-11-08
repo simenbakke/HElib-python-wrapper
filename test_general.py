@@ -1,5 +1,4 @@
 import PythonWrapper as pw
-import sys
 
 def test():
     m = 7781
@@ -40,11 +39,11 @@ def test():
     print ("Key generated")
 
     ea = pw.EncryptedArray(context, G)
-    print ("EncryptedArray generated")
+    #print ("EncryptedArray generated")
     #print (pw.pyvector(G))
 
     nslots = ea.size()
-    print("nslots = ", nslots)
+    #print("nslots = ", nslots)
     p0 = pw.NewPlaintextArray(ea)
     p1 = pw.NewPlaintextArray(ea)
     p2 = pw.NewPlaintextArray(ea)
@@ -100,6 +99,41 @@ def test():
     c2.multByConstant(const2_poly, -1)
     pw.CheckCtxt(c2, "c2*=k2")
     pw.debugCompare(ea, secretKey, p2,c2)
+
+    tmp_p = pw.NewPlaintextArray(p1)
+    tmp = pw.Ctxt(c1)
+    strbuffer = "c2>>="
+    strbuffer += str(shamt)
+    pw.shift(ea, tmp_p, shamt)
+    ea.eashift(tmp, shamt)
+    pw.CheckCtxt(tmp, strbuffer)
+    pw.debugCompare(ea, secretKey, tmp_p, tmp)
+    #print(strbuffer)
+
+    #c2 += tmp
+    pw.add(ea, p2, tmp_p)
+    pw.add_ctxt(c2, tmp)
+    pw.CheckCtxt(c2, "c2+=tmp")
+    pw.debugCompare(ea,secretKey,tmp_p, tmp)
+
+    strbuffer = "c2>>>="
+    strbuffer += str(rotamt)
+    pw.rotate(ea, p2, rotamt)
+    ea.earotate(c2, rotamt)
+    pw.CheckCtxt(c2, strbuffer)
+    pw.debugCompare(ea,secretKey,p2,c2)
+
+    #c3.multiplyBy(c2)
+    pw.mul(ea, p3, p2)
+    c3.multiplyBy(c2)
+    pw.CheckCtxt(c3, "c3*=c2")
+    pw.debugCompare(ea,secretKey,p3,c3)
+
+    #c0 -= c3
+    pw.sub(ea, p0, p3)
+    pw.sub_ctxt(c0,c3)
+    pw.CheckCtxt(c0, "c0=-c3")
+    pw.debugCompare(ea,secretKey,p0,c0)
 
     c0.cleanUp()
     c1.cleanUp()
