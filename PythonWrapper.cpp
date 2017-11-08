@@ -58,7 +58,6 @@ void sub_ctxt(Ctxt& a, Ctxt& b){
 BOOST_PYTHON_MODULE(PythonWrapper)
 {
 
-  //to_python_converter<ZZX, ZZX_to_python>();
 
   def("FindM", FindM);
   def("buildModChain", buildModChain);

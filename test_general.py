@@ -13,7 +13,7 @@ def test():
     a = pw.pyvector()
     b = pw.pyvector()
 
-    m = pw.FindM(k,L,c,p,d,s,0, False)
+    m = pw.FindM(k, L, c, p, d, s, 0, False)
 
     #initialize context
     context = pw.FHEcontext(m, p, r, a, b)
@@ -54,10 +54,10 @@ def test():
     pw.random(ea, p2)
     pw.random(ea, p3)
 
-    c0 = pw.Ctxt(publicKey,0)
-    c1 = pw.Ctxt(publicKey,0)
-    c2 = pw.Ctxt(publicKey,0)
-    c3 = pw.Ctxt(publicKey,0)
+    c0 = pw.Ctxt(publicKey, 0)
+    c1 = pw.Ctxt(publicKey, 0)
+    c2 = pw.Ctxt(publicKey, 0)
+    c3 = pw.Ctxt(publicKey, 0)
 
     ea.encrypt_plaintext(c0, publicKey, p0)
     ea.encrypt_plaintext(c1, publicKey, p1)
@@ -86,19 +86,19 @@ def test():
     pw.mul(ea, p1, p0)
     c1.multiplyBy(c0)
     pw.CheckCtxt(c1, "c1*=c0")
-    pw.debugCompare(ea,secretKey,p1,c1)
+    pw.debugCompare(ea, secretKey, p1, c1)
 
     #c0 += random constant
     pw.add(ea, p0, const1)
     c0.addConstant(const1_poly, -1)
     pw.CheckCtxt(c0, "c0+=k1")
-    pw.debugCompare(ea,secretKey,p0,c0)
+    pw.debugCompare(ea, secretKey, p0, c0)
 
     #c2 *= random constant
     pw.mul(ea, p2, const2)
     c2.multByConstant(const2_poly, -1)
     pw.CheckCtxt(c2, "c2*=k2")
-    pw.debugCompare(ea, secretKey, p2,c2)
+    pw.debugCompare(ea, secretKey, p2, c2)
 
     tmp_p = pw.NewPlaintextArray(p1)
     tmp = pw.Ctxt(c1)
@@ -114,26 +114,26 @@ def test():
     pw.add(ea, p2, tmp_p)
     pw.add_ctxt(c2, tmp)
     pw.CheckCtxt(c2, "c2+=tmp")
-    pw.debugCompare(ea,secretKey,tmp_p, tmp)
+    pw.debugCompare(ea, secretKey, tmp_p, tmp)
 
     strbuffer = "c2>>>="
     strbuffer += str(rotamt)
     pw.rotate(ea, p2, rotamt)
     ea.earotate(c2, rotamt)
     pw.CheckCtxt(c2, strbuffer)
-    pw.debugCompare(ea,secretKey,p2,c2)
+    pw.debugCompare(ea, secretKey, p2, c2)
 
     #c3.multiplyBy(c2)
     pw.mul(ea, p3, p2)
     c3.multiplyBy(c2)
     pw.CheckCtxt(c3, "c3*=c2")
-    pw.debugCompare(ea,secretKey,p3,c3)
+    pw.debugCompare(ea, secretKey, p3, c3)
 
     #c0 -= c3
     pw.sub(ea, p0, p3)
-    pw.sub_ctxt(c0,c3)
+    pw.sub_ctxt(c0, c3)
     pw.CheckCtxt(c0, "c0=-c3")
-    pw.debugCompare(ea,secretKey,p0,c0)
+    pw.debugCompare(ea, secretKey, p0, c0)
 
     c0.cleanUp()
     c1.cleanUp()
@@ -149,7 +149,8 @@ def test():
     ea.decrypt_plaintext(c2, secretKey, pp2)
     ea.decrypt_plaintext(c3, secretKey, pp3)
 
-    if (pw.equals(ea, pp0, p0) and pw.equals(ea, pp1, p1) and pw.equals(ea, pp2, p2) and pw.equals(ea, pp3, p3)):
+    if (pw.equals(ea, pp0, p0) and pw.equals(ea, pp1, p1) and \
+     pw.equals(ea, pp2, p2) and pw.equals(ea, pp3, p3)):
         print("GOOD ")
     else:
         print("BAD")
