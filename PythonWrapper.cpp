@@ -17,32 +17,6 @@
 using namespace boost::python;
 
 
-// int temp(){
-//
-//   long a,b,c = 1;
-//   vector<long> v1,v2;
-//   FHEcontext context(a,b,c,v1,v2);
-//   return 0;
-//
-// }
-// struct ZZX_to_python
-// {
-//   static PyObject* convert(const ZZX& G){
-//
-//     return  incref(object(G).ptr());
-//
-//   }
-//
-// };
-
-// EncryptedArray* getFactorsPython(const FHEcontext& context){
-//
-//   ZZX G = context.alMod.getFactorsOverZZ()[0];
-//   EncryptedArray *ea = new EncryptedArray(context, G);
-//   //ea(context, G);
-//   return ea;
-//
-// }
 
 Ctxt Ctxt_sum(Ctxt& ct1, Ctxt& ct2){
 
@@ -60,6 +34,17 @@ Ctxt Ctxt_prod(Ctxt& ct1, Ctxt& ct2){
   return ctSum;
 }
 
+void debugCompare(EncryptedArray& ea, FHESecKey& sk, NewPlaintextArray& p, Ctxt& c){
+  NewPlaintextArray pp(ea);\
+  ea.decrypt(c, sk, pp);\
+  if (!equals(ea, pp, p)) { \
+    std::cout << "oops:\n"; std::cout << p << "\n\n"; \
+    std::cout << pp << "\n"; \
+    exit(0); \
+  }
+
+}
+
 
 BOOST_PYTHON_MODULE(PythonWrapper)
 {
@@ -71,29 +56,43 @@ BOOST_PYTHON_MODULE(PythonWrapper)
   def("Ctxt_sum", Ctxt_sum);
   def("Ctxt_prod", Ctxt_prod);
   def("addSome1DMatrices", addSome1DMatrices);
-  //def("getFactorsPython", getFactorsPython);
+  def("CheckCtxt", CheckCtxt);
+  def("debugCompare", debugCompare);
+  def("makeIrredPoly", makeIrredPoly);
+
+
+  void (*r1)(const EncryptedArray&, NewPlaintextArray&) = &random;
+  def("random", r1);
+
+  void (*m1)(const EncryptedArray&, NewPlaintextArray&, const NewPlaintextArray&) = &mul;
+  def("mul", m1);
+
+  void (*a1)(const EncryptedArray&, NewPlaintextArray&, const NewPlaintextArray&) = &add;
+  def("add", a1);
+
+  bool (*eq1)(const EncryptedArray&, const NewPlaintextArray&, const NewPlaintextArray&) = &equals;
+  def("equals", eq1);
+
+  //NTL functions
+  long (*rb)(long) = &NTL::RandomBnd;
+  def("RandomBnd", rb);
+
 
   //Vector converter for python
   typedef std::vector<long>  pyvector;
   class_<std::vector<long>> ("pyvector")
   .def(vector_indexing_suite< std::vector<long> >());
 
-  //typedef const vector<ZZX>&  ntlVector;
-  //class_<ZZX, ZZX&>;
-
+  //NTL vector converter
   class_<std::vector<NTL::ZZX, std::allocator<NTL::ZZX>> >("ntlVector")
     .def(vector_indexing_suite<std::vector<NTL::ZZX, std::allocator<NTL::ZZX> >>());
 
   {
-    scope in_context = class_<FHEcontext>("FHEcontext", no_init)
-      .def(init<unsigned long,unsigned long,unsigned long, pyvector, pyvector>())
-      //.add_property("stdev", &FHEcontext::bitsPerLevel)
-      .add_property("zMStar", &FHEcontext::zMStar)
-      .add_property("alMod", &FHEcontext::alMod)
-      // .add_property("ea",
-      // make_getter(&FHEcontext::ea, return_internal_reference<>()),
-      // make_setter(&FHEcontext::ea, return_internal_reference<>()))
-    ;
+  scope in_context = class_<FHEcontext>("FHEcontext", no_init)
+    .def(init<unsigned long,unsigned long,unsigned long, pyvector, pyvector>())
+    .add_property("zMStar", &FHEcontext::zMStar)
+    .add_property("alMod", &FHEcontext::alMod)
+  ;
 
     class_<PAlgebra>("PAlgebra", no_init)
       //.def(init<unsigned long,unsigned long, pyvector, pyvector>())
@@ -105,9 +104,8 @@ BOOST_PYTHON_MODULE(PythonWrapper)
     ;
   }
 
-
-  class_<NTL::ZZX>("pythonZZX")
-
+  //NTL vector class
+  class_<NTL::ZZX>("ZZX")
   ;
 
   class_<FHEPubKey>("FHEPubKey")
@@ -118,35 +116,42 @@ BOOST_PYTHON_MODULE(PythonWrapper)
   class_<FHESecKey, bases<FHEPubKey> >("FHESecKey", no_init)
     .def(init<const FHEcontext&>())
     .def("GenSecKey", &FHESecKey::GenSecKey)
-
-
-    //.def(init<&FHEPubKey::FHEPubKey>())
-    //.def(init<&FHEPubKey(const FHEcontext& _context)>())
-
   ;
+
+
+  void (Ctxt::*addc1)(const ZZX&, double)  = &Ctxt::addConstant;
+  void (Ctxt::*mbc1)(const ZZX&, double)  = &Ctxt::multByConstant;
+  //BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(addc1, Ctxt::addConstant, 1, 2)
 
   class_<Ctxt>("Ctxt", no_init)
     .def(init<const FHEPubKey&, long>())
-    .def("isCorrect", &Ctxt::isCorrect)
-  // scope in_base = class_<EncryptedArrayBase>("EncryptedArrayBase", no_init)
-  //
-  // ;
+    .def("multiplyBy", &Ctxt::multiplyBy)
+    .def("multByConstant", mbc1)
+    .def("addConstant", addc1)
+    .def("cleanUp", &Ctxt::cleanUp)
   ;
-  {
-    // class_<EncryptedArrayBase, boost::noncopyable>("EncryptedArrayBase", no_init)
-    //
-    // ;
 
-    void (EncryptedArray::*e1)(Ctxt&, const FHEPubKey&, const pyvector&) const = &EncryptedArray::encrypt;
-    void (EncryptedArray::*d1)(const Ctxt&, const FHESecKey&, pyvector&) const = &EncryptedArray::decrypt;
-    // void (EncryptedArray::*e2)(Ctxt&, const FHEPubKey&, const vector<ZZX>&) = &EncryptedArray::encrypt;
-    // void (EncryptedArray::*e3)(Ctxt&, const FHEPubKey&, const NewPlaintextArray&) = &EncryptedArray::encrypt;
 
-    class_<EncryptedArray>("EncryptedArray", no_init)
-      .def(init<const FHEcontext&, const ZZX&>())
-      .def("encrypt", e1)
-      .def("decrypt", d1)
-      .def("getTag", &EncryptedArray::getTag)
-    ;
-  }
+  void (EncryptedArray::*e1)(Ctxt&, const FHEPubKey&, const pyvector&) const = &EncryptedArray::encrypt;
+  void (EncryptedArray::*e2)(Ctxt&, const FHEPubKey&, const NewPlaintextArray&) const = &EncryptedArray::encrypt;
+  void (EncryptedArray::*d1)(const Ctxt&, const FHESecKey&, pyvector&) const = &EncryptedArray::decrypt;
+  void (EncryptedArray::*d2)(const Ctxt&, const FHESecKey&, NewPlaintextArray&) const = &EncryptedArray::decrypt;
+
+  void (EncryptedArray::*enc1)(ZZX&, const NewPlaintextArray&) const = &EncryptedArray::encode;
+
+  class_<EncryptedArray>("EncryptedArray", no_init)
+    .def(init<const FHEcontext&, const ZZX&>())
+    .def("encrypt", e1)
+    .def("encrypt_plaintext", e2)
+    .def("decrypt", d1)
+    .def("decrypt_plaintext", d2)
+    .def("encode", enc1)
+    .def("size", &EncryptedArray::size)
+  ;
+
+  class_<NewPlaintextArray>("NewPlaintextArray", no_init)
+    .def(init<const EncryptedArray&>())
+  ;
+
+
 }
