@@ -1,0 +1,25 @@
+\contentsline {chapter}{Abstract}{i}{chapter*.1}
+\contentsline {chapter}{Acknowledgements}{iii}{chapter*.2}
+\contentsline {chapter}{Contents}{vi}{chapter*.3}
+\contentsline {chapter}{List of Figures}{viii}{chapter*.4}
+\contentsline {chapter}{List of Tables}{ix}{chapter*.5}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2}Background}{2}{chapter.2}
+\contentsline {section}{\numberline {2.1}Machine learning}{2}{section.2.1}
+\contentsline {subsubsection}{Accuracy}{2}{subsubsection*.6}
+\contentsline {subsubsection}{Recall}{3}{subsubsection*.7}
+\contentsline {subsubsection}{Precision}{3}{subsubsection*.8}
+\contentsline {section}{\numberline {2.2}Deep learning}{3}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Convolutional neural network}{3}{subsection.2.2.1}
+\contentsline {section}{\numberline {2.3}Classification vs. detection}{4}{section.2.3}
+\contentsline {chapter}{\numberline {3}Methods}{5}{chapter.3}
+\contentsline {section}{\numberline {3.1}Dataset}{5}{section.3.1}
+\contentsline {chapter}{\numberline {4}Results}{7}{chapter.4}
+\contentsline {chapter}{\numberline {5}Discussion}{8}{chapter.5}
+\contentsline {section}{\numberline {5.1}asdf}{8}{section.5.1}
+\contentsline {chapter}{\numberline {6}Conclusion}{10}{chapter.6}
+\contentsline {section}{\numberline {6.1}Future Work}{10}{section.6.1}
+\contentsline {chapter}{Bibliography}{11}{chapter*.11}
+\contentsline {chapter}{Appendices}{13}{section*.12}
+\setcounter {tocdepth}{0}
+\contentsline {chapter}{\numberline {A}tttt}{15}{Appendix.a.A}

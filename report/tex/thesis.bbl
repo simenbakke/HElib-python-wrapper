@@ -1,0 +1,14 @@
+\begin{thebibliography}{1}
+
+\bibitem{Esteva2017}
+A.~Esteva, B.~Kuprel, R.~A. Novoa, J.~Ko, S.~M. Swetter, H.~M. Blau, and
+  S.~Thrun, ``Dermatologist-level classification of skin cancer with deep
+  neural networks,'' {\em Nature}, vol.~542, pp.~115--118, Feb 2017.
+\newblock Letter.
+
+\bibitem{Homesite2017}
+``Homesite quote conversion.''
+  \url{https://www.kaggle.com/c/homesite-quote-conversion}.
+\newblock Accessed: 2017-30-05.
+
+\end{thebibliography}

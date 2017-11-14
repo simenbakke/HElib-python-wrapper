@@ -1,0 +1,70 @@
+%%% DOCUMENT BEGIN
+
+\input{pre}
+
+\begin{document}
+
+\includepdfmerge{../fig/frontpage.pdf}
+
+\titleformat{\chapter}
+  {\Large\bfseries} % format
+  {}                % label
+  {1pt}             % sep
+  {\huge}           % before-code
+
+
+\pagenumbering{roman}    % count in romans for abstract and table of contents
+
+\blankpage   % insert blank page
+
+\clearpage
+\setcounter{page}{1}
+\setlength{\parskip}{1em} % paragraph skip length
+\setlength{\parindent}{0em} % indentation skip length
+
+\include{abstract}
+
+\afterpage{\blankpage}   % insert blank page
+\include{acknowledgments}
+
+
+\setlength{\parskip}{0em}  % Set parahp skip length for table of contents
+\afterpage{\blankpage} % Insert blank page
+
+
+\tableofcontents          % Insert table of contents
+\addcontentsline{toc}{chapter}{Contents} % insert table of contents entry in table of contetns
+\afterpage{\blankpage}   % insert blank page
+
+\setcounter{tocdepth}{1}
+\listoffigures        % List of figure
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+
+
+
+\newpage{} %
+
+%%% DOCUMENT BODY
+\pagenumbering{arabic}   % Start content counting for real
+
+
+\setlength{\parskip}{1em}  % Set paragraph skip length again
+
+\include{introduction}
+\include{background}
+\include{methods}
+\include{results}
+\include{discussion}
+\include{conclusion}
+
+
+\bibliography{references}
+\bibliographystyle{ieeetr}
+
+\include{appendix}
+
+
+
+\end{document}
