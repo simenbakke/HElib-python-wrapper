@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.11.12)  13 NOV 2017 12:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.11.12)  15 NOV 2017 17:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1371,15 +1371,73 @@ LaTeX Font Info:    Font shape `T1/XCharter-TLF/b/n' will be
 
  (./introduction.tex
 Chapter 1.
-)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
- been already used, duplicate ignored
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.8 \newpage
+            
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--8
+
+ []
+
+
+Overfull \hbox (4.93977pt too wide) in paragraph at lines 5--8
+\T1/XCharter-TLF/m/n/12 As the trend of cloud ser-vices have ex-ploded in the l
+ast years this have changed.
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.55 \include{introduction}
-                            [1
+l.8 \newpage
+             [1
 
 
 ]
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.15 
+     
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--15
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--15
+
+ []
+
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.16 \end{enumerate}
+                    
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+) [2]
 \openout2 = `background.aux'.
 
  (./background.tex
@@ -1391,7 +1449,7 @@ LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [2
+ [3
 
 
 
@@ -1401,7 +1459,7 @@ LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/b/n' will be
 (Font)              scaled to size 14.11192pt on input line 20.
 
-<../fig/cnn_conv.png, id=203, 636.3775pt x 427.5975pt>
+<../fig/cnn_conv.png, id=204, 636.3775pt x 427.5975pt>
 File: ../fig/cnn_conv.png Graphic file (type png)
 
 <use ../fig/cnn_conv.png>
@@ -1411,28 +1469,28 @@ LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
 (Font)              scaled to size 10.73094pt on input line 26.
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/b/n' will be
 (Font)              scaled to size 10.73094pt on input line 26.
- <../fig/cat.jpg, id=205, 1387.584pt x 1040.688pt>
+ <../fig/cat.jpg, id=206, 1387.584pt x 1040.688pt>
 File: ../fig/cat.jpg Graphic file (type jpg)
 
 <use ../fig/cat.jpg>
 Package pdftex.def Info: ../fig/cat.jpg used on input line 39.
 (pdftex.def)             Requested size: 102.47011pt x 76.84137pt.
 
-<../fig/cat_localization.jpg, id=206, 3468.96pt x 2601.72pt>
+<../fig/cat_localization.jpg, id=207, 3468.96pt x 2601.72pt>
 File: ../fig/cat_localization.jpg Graphic file (type jpg)
 
 <use ../fig/cat_localization.jpg>
 Package pdftex.def Info: ../fig/cat_localization.jpg used on input line 47.
 (pdftex.def)             Requested size: 102.47011pt x 76.81755pt.
 
-<../fig/cat_dog_detection.jpg, id=207, 1188.44pt x 891.33pt>
+<../fig/cat_dog_detection.jpg, id=208, 1188.44pt x 891.33pt>
 File: ../fig/cat_dog_detection.jpg Graphic file (type jpg)
 
 <use ../fig/cat_dog_detection.jpg>
 Package pdftex.def Info: ../fig/cat_dog_detection.jpg used on input line 55.
 (pdftex.def)             Requested size: 102.47011pt x 76.84329pt.
 
-<../fig/cat_dog_segmentation.jpg, id=208, 1188.44pt x 891.33pt>
+<../fig/cat_dog_segmentation.jpg, id=209, 1188.44pt x 891.33pt>
 File: ../fig/cat_dog_segmentation.jpg Graphic file (type jpg)
 
 <use ../fig/cat_dog_segmentation.jpg>
@@ -1451,69 +1509,69 @@ r-TLF.
 )
 LaTeX Font Info:    Font shape `TS1/XCharter-TLF/m/n' will be
 (Font)              scaled to size 11.75995pt on input line 72.
- [3 <../fig/cnn_conv.png>]) [4 <../fig/cat.jpg> <../fig/cat_localization.jpg> <
+ [4 <../fig/cnn_conv.png>]) [5 <../fig/cat.jpg> <../fig/cat_localization.jpg> <
 ../fig/cat_dog_detection.jpg> <../fig/cat_dog_segmentation.jpg>]
 \openout2 = `methods.aux'.
 
  (./methods.tex
 Chapter 3.
-) [5
+) [6
 
 
 
 ]
 \openout2 = `results.aux'.
 
- (./results.tex [6
+ (./results.tex [7
 
 
 
 ]
 Chapter 4.
-) [7]
+) [8]
 \openout2 = `discussion.aux'.
 
  (./discussion.tex
 Chapter 5.
-) [8
+) [9
 
 
 
 ]
 \openout2 = `conclusion.aux'.
 
- (./conclusion.tex [9
+ (./conclusion.tex [10
 
 
 
 ]
 Chapter 6.
-) [10] (./thesis.bbl
+) [11] (./thesis.bbl
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/it' will be
 (Font)              scaled to size 11.75995pt on input line 6.
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 11.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 ))
-[11
+[12
 
 
 ]
 \openout2 = `appendix.aux'.
 
- (./appendix.tex [12
+ (./appendix.tex [13
 
 
 ]
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
 (Font)              scaled to size 24.3823pt on input line 3.
- [13
+ [14
 
-] [14
+] [15
 
 ]
 Appendix A.
-) [15] [16
+) [16] [17
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 70.
@@ -1527,13 +1585,13 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: A733EE2310EF2EDC1B9BC5FAACFF71E3;1011.
  ) 
 Here is how much of TeX's memory you used:
- 13138 strings out of 493013
- 192293 string characters out of 6135681
- 298580 words of memory out of 5000000
+ 13136 strings out of 493013
+ 192282 string characters out of 6135681
+ 298581 words of memory out of 5000000
  16289 multiletter control sequences out of 15000+600000
  92785 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,18n,92p,1560b,522s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,18n,92p,1151b,522s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texliv
 e/texmf-dist/fonts/enc/dvips/xcharter/xch_tuu2ww.enc}{/usr/share/texlive/texmf-
 dist/fonts/enc/dvips/xcharter/xch_jfcsri.enc}</usr/share/texlive/texmf-dist/fon
@@ -1543,10 +1601,10 @@ ts/type1/public/xcharter/XCharter-Bold.pfb></usr/share/texlive/texmf-dist/fonts
 type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmr12.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt
 1200.pfb>
-Output written on thesis.pdf (27 pages, 14388534 bytes).
+Output written on thesis.pdf (28 pages, 14392142 bytes).
 PDF statistics:
- 316 PDF objects out of 1000 (max. 8388607)
+ 317 PDF objects out of 1000 (max. 8388607)
  262 compressed objects within 3 object streams
- 58 named destinations out of 1000 (max. 500000)
+ 56 named destinations out of 1000 (max. 500000)
  201 words of extra memory for PDF output out of 10000 (max. 10000000)
 
