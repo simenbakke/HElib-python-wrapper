@@ -2,4 +2,8 @@
 
 \afterpage{\blankpage}   % insert blank page
 
-\chapter{Results}
+\chapter{Design}
+In this chapter we will display the results of the tasks outlined in the approach section.
+
+\section{C++ wrapper for Python}
+When it comes to wrapping C++ code to python there are many options to chose from, like Boost, SWIG, cTypes and manual wrapping. We wanted a wrapper which would satisfy all the requirements to wrap the code in terms of user defined objects and types. But satisfying these requirements alone is not enough, it needs to be fast in terms of compiling and execution time and it needs to be simple. The first option considered was SWIG. SWIG was considered as the first option because of it's simplicity. It is a software development tool for building scripting language interfaces largely automatically. When using SWIG we ran into a problem. Even though it did wrap a some parts of the code automatically, a converter for all the user defined objects and types had to be created. As the HElib library is big and we do not need the majority of the functions in conjunction with a lot of user defined types and objects made the automation aspect of the software rather useless.\\\\

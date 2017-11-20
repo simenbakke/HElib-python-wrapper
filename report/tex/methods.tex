@@ -1,4 +1,31 @@
-\chapter{Methods}
-In this chapter, we describe the methods used in our approach. We will first describe the dataset, which includes data collection, class distribution and training/test partitioning. We then describe the general design of convolutional neural networks and how we train them. We will describe all experiments performed on the lung sound dataset. The experiments are wheeze detection, breathing phase detection and full file classification. For each experiment, we will describe data preprocessing, model architecture and training details for the best performing model. Finally, we will explain the design and implementation of an prototype that can utilize the capabilities of our lung sound analysis system. The lung sound analysis system is a system that uses the best performing model from each experiment.
+\chapter{Approach}
 
-\section{Dataset}
+This chapter outlines the methodology and actions used to create the Python API of a Homomorphic Encryption Library. We will also take a look at how we can test the Python API to measure the difference in performance between the C++ library and the Python library. We will explain the approach of choosing a Python wrapper for the C++ code. And we will look at how we can determine possible usages and limitations of the library.
+
+
+
+
+
+\section{Objectives}
+
+The main objective of this thesis is to create a Fully Homomorphic Encryption API in Python and measure the performance to get a sense of how far we have come in the development and implementation of FHE schemes. The Python API will be based an already existing C++ library called HElib. The Python API need to support a majority of the existing functions of HElib  to classify it as a FHE API. Ideally the Python API should not be significantly slower than the C++ library i terms of compilation time and performance. Lastly we want to use the performance measurements of the API to find scenarios which a Python FHE can be useful.
+\\\\
+The thesis work is structured into the following three stages
+\\\\
+1. A design stage\\\\
+2. An implementation stage\\\\
+3. Measurement, analysis and comparison stage
+
+\section{Design Stage}
+
+In the design stage we will plan the necessary steps to implement a solution which satisfies the objectives mentioned above. As we have number of different objectives the design stage is divided into several steps which is outlined below.
+\\\\
+1. Explore and choose a C++ wrapper for python\\\\
+2. Create a model of the API\\\\
+3. Find a suitable model for testing the API
+
+\subsection{C++ wrapper for Python}
+In the first task of the design stage we will examine different C++ wrappers to find one that is suitable to wrap the HElib library to python. This includes examining the HElib library to see how it is built. We need to find out if this is a shared/private library and also look at the code to see if there is any special object types. As the HElib library is built on the NTL mathematical library the chances are great that there will be some non standard objects. Finding a wrapper which supports the different object types including user defined object types are important to be able to wrap the code properly.
+
+\subsection{Create a model for the API}
+There are currently few options when it comes to FHE libraries in Python. When the Python API is created it is important that the API is well explained and the potential usages to be shown. As of today the HElib library are not easily understood as to how to use it properly. This means it is even more important that the API is well documented with examples making it usable for anyone easily. There will also almost certain be differences between the API and the currently existing library as C++ and Python does not handle all objects and types the same way.  

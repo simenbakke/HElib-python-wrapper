@@ -1,4 +1,5 @@
 import PythonWrapper as pw
+import timeit
 
 def test():
     m = 0
@@ -13,35 +14,35 @@ def test():
     a = pw.pyvector()
     b = pw.pyvector()
 
-    m = pw.FindM(k,L,c,p,d,s,0, False)
+    m = pw.FindM(k, L, c, p, d, s, 0, False)
 
-    #initialize context
+    '#initialize context'
     context = pw.FHEcontext(m, p, r, a, b)
-    #modify the context
+    '#modify the context'
     pw.buildModChain(context, L, c, 0)
 
+    '#Construct a secret key'
+    '#pubkey is a subclass of seckey'
     secretKey = pw.FHESecKey(context)
     publicKey = secretKey
 
+    if(d == 0):
+        G = context.alMod.getFactorsOverZZ()[0]
+    else:
+        G = pw.makeIrredPoly(p, d)
 
-
-    G = context.alMod.getFactorsOverZZ()[0]
-
-    #print("G = ", G)
-    #print ("context =", context)
+    '#Generate the secreykey'
     secretKey.GenSecKey(w, 0, 3)
 
     pw.addSome1DMatrices(secretKey, 100, 0)
-    #print("keyExists = ", publicKey.keyExists(0))
 
-    print ("Key generated")
-
+    '#contrust an encrypted array object ea that is'
+    '#associated with the given context and the polynomial G'
     ea = pw.EncryptedArray(context, G)
-    print ("EncryptedArray generated")
-    #print (pw.pyvector(G))
 
+    nslots = ea.size()
     v1 = pw.pyvector()
-    for i in range (0, 288):
+    for i in range(0, nslots):
         v1.append(i*2)
     #print (v1[100])
 
@@ -54,7 +55,7 @@ def test():
     v2 = pw.pyvector()
     ctxt2 = pw.Ctxt(publicKey, 0)
 
-    for i in range(0, 288):
+    for i in range(0, nslots):
         v2.append(i*3)
     ea.encrypt(ctxt2, publicKey, v2)
 
@@ -64,15 +65,18 @@ def test():
     res = pw.pyvector()
     ea.decrypt(ctSum, secretKey, res);
 
-    for i in range (0, len(res)):
-        print (v1[i], "+", v2[i], "=", res[i])
+    #for i in range (0, len(res)):
+        #print (v1[i], "+", v2[i], "=", res[i])
     #print ("eaBaseTag = ", ea.getTag())
     ea.decrypt(ctProd, secretKey, res)
-    for i in range (0, len(res)):
-        print (v1[i], "*", v2[i], "=", res[i])
+    #for i in range (0, len(res)):
+        #print (v1[i], "*", v2[i], "=", res[i])
 
 
     #ctxt2 = pw.Ctxt(publicKey, 0)
 
 if __name__ == "__main__":
+    start = timeit.default_timer()
     test()
+    stop = timeit.default_timer()
+    print ("Runtime = ", stop - start)
