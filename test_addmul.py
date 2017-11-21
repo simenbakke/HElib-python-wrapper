@@ -45,72 +45,76 @@ def test():
 
     '#Open file 1'
     fileOne = glob.glob(os.path.join(path, (sys.argv[1] + '.csv')))
+    fileTwo = glob.glob(os.path.join(path, (sys.argv[2] + '.csv')))
 
     #with open(fileOne[0], 'r') as f:
         #print(f.read())
-    vectorList = []
+    ptxtListOne = []
+    ctxtListOne = []
     with open(fileOne[0], 'r') as f:
         reader = list(csv.reader(f))
         items_to_list = len(reader)
         num_vectors = math.ceil(len(reader) / nslots)
         for i in range(num_vectors):
-            vectorList.append(pw.pyvector())
+            vector = pw.pyvector()
 
             if items_to_list > nslots:
                 for row in reader[i*nslots:(i+1)*nslots]:
-                    vectorList[i].append(int("".join(row)))
+                    vector.append(int("".join(row)))
                 items_to_list -= nslots
             else:
                 for row in reader[i*nslots:]:
-                    vectorList[i].append(int("".join(row)))
+                    vector.append(int("".join(row)))
+                if len(vector) < nslots:
+                    filler = nslots - len(vector)
+                    for i in range(filler):
+                        vector.append(0)
 
-    vectorListTwo = []
+            plainText = pw.NewPlaintextArray(ea)
+            cipherText = pw.Ctxt(publicKey, 0)
+            pw.encode2(ea, plainText, vector)
+            ea.encrypt_plaintext(cipherText, publicKey, plainText)
+            ptxtListOne.append(plainText)
+            ctxtListOne.append(cipherText)
+
+    ptxtListTwo = []
+    ctxtListTwo = []
     with open(fileTwo[0], 'r') as f:
         reader = list(csv.reader(f))
         items_to_list = len(reader)
         num_vectors = math.ceil(len(reader) / nslots)
         for i in range(num_vectors):
-            vectorListTwo.append(pw.pyvector())
+            vector = pw.pyvector()
 
             if items_to_list > nslots:
                 for row in reader[i*nslots:(i+1)*nslots]:
-                    vectorListTwo[i].append(int("".join(row)))
+                    vector.append(int("".join(row)))
                 items_to_list -= nslots
             else:
                 for row in reader[i*nslots:]:
-                    vectorListTwo[i].append(int("".join(row)))
+                    vector.append(int("".join(row)))
+                if len(vector) < nslots:
+                    filler = nslots - len(vector)
+                    for i in range(filler):
+                        vector.append(0)
+
+            plainText = pw.NewPlaintextArray(ea)
+            cipherText = pw.Ctxt(publicKey, 0)
+            pw.encode2(ea, plainText, vector)
+            ea.encrypt_plaintext(cipherText, publicKey, plainText)
+            ptxtListTwo.append(plainText)
+            ctxtListTwo.append(cipherText)
+
+    """Multiply the plaintext and ciphertext, then debugCompare decrypts to
+    see if the result is correct"""
+    for i in range(len(ptxtListOne)):
+        pw.mul(ea, ptxtListOne[i], ptxtListTwo[i])
+        ctxtListOne[i].multiplyBy(ctxtListTwo[i])
+        pw.CheckCtxt(ctxtListOne[i], "ci*=c0")
+        pw.debugCompare(ea, secretKey, ptxtListOne[i], ctxtListOne[i])
 
 
 
-
-    ctxt1 = pw.Ctxt(publicKey, 0)
-
-    #print(pw.Ctxt.isCorrect(ctxt1))
-    #print("Encryptes parameters = ", ctxt1, publicKey, v1)
-    ea.encrypt(ctxt1, publicKey, v1)
-
-    v2 = pw.pyvector()
-    ctxt2 = pw.Ctxt(publicKey, 0)
-
-    for i in range(0, nslots):
-        v2.append(i*3)
-    ea.encrypt(ctxt2, publicKey, v2)
-
-    ctSum = pw.Ctxt_sum(ctxt1, ctxt2)
-    ctProd = pw.Ctxt_prod(ctxt1, ctxt2)
-
-    res = pw.pyvector()
-    ea.decrypt(ctSum, secretKey, res);
-
-    #for i in range (0, len(res)):
-        #print (v1[i], "+", v2[i], "=", res[i])
-    #print ("eaBaseTag = ", ea.getTag())
-    ea.decrypt(ctProd, secretKey, res)
-    #for i in range (0, len(res)):
-        #print (v1[i], "*", v2[i], "=", res[i])
-
-
-    #ctxt2 = pw.Ctxt(publicKey, 0)
 
 if __name__ == "__main__":
     start = timeit.default_timer()

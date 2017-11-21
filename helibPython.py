@@ -45,7 +45,7 @@ def test():
     for i in range(0, nslots):
         v1.append(i*2)
     #print (v1[100])
-
+    print(len(v1))
     ctxt1 = pw.Ctxt(publicKey, 0)
 
     #print(pw.Ctxt.isCorrect(ctxt1))

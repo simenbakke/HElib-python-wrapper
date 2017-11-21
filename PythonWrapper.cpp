@@ -19,6 +19,17 @@
 using namespace boost::python;
 
 
+void plainText_sum(std::vector<long> a, std::vector<long> b, long modulo){
+  //vector<ZZX> sum;
+  long n = a.size();
+  for (long i = 0; i < n; i++){
+    cout << "adding" << a[i] << "+" << b[i] << endl;
+    a[i] = (a[i] + b[i]) % modulo;
+    cout << "result = " << a[i] << endl;
+  }
+  //std::transform (a.begin(), a.end(), b.begin(), a.begin(), std::plus<int>());
+
+}
 
 Ctxt Ctxt_sum(Ctxt& ct1, Ctxt& ct2){
 
@@ -47,6 +58,17 @@ void debugCompare(EncryptedArray& ea, FHESecKey& sk, NewPlaintextArray& p, Ctxt&
 
 }
 
+void debugCompareVector(EncryptedArray& ea, FHESecKey& sk, const vector<ZZX>& p, Ctxt& c){
+  NewPlaintextArray pp(ea);\
+  ea.decrypt(c, sk, pp);\
+  if (!equals(ea, pp, p)) { \
+    std::cout << "oops:\n"; std::cout << p << "\n\n"; \
+    std::cout << pp << "\n"; \
+    exit(0); \
+  }
+
+}
+
 void add_ctxt(Ctxt& a, Ctxt& b){
       a += b;
 }
@@ -63,9 +85,11 @@ BOOST_PYTHON_MODULE(PythonWrapper)
   def("buildModChain", buildModChain);
   def("Ctxt_sum", Ctxt_sum);
   def("Ctxt_prod", Ctxt_prod);
+  def("plainText_sum", plainText_sum);
   def("addSome1DMatrices", addSome1DMatrices);
   def("CheckCtxt", CheckCtxt);
   def("debugCompare", debugCompare);
+  def("debugCompareVector", debugCompareVector);
   def("makeIrredPoly", makeIrredPoly);
   def("add_ctxt", add_ctxt);
   def("sub_ctxt", sub_ctxt);
@@ -92,6 +116,9 @@ BOOST_PYTHON_MODULE(PythonWrapper)
 
   void (*rt1)(const EncryptedArray&, NewPlaintextArray&, long) = &rotate;
   def("rotate", rt1);
+
+  void (*enc2)(const EncryptedArray& ea, NewPlaintextArray& pa, const vector<long>& array) = &encode;
+  def("encode2", enc2);
 
   //NTL functions
   long (*rb)(long) = &NTL::RandomBnd;
@@ -149,6 +176,7 @@ BOOST_PYTHON_MODULE(PythonWrapper)
     .def("multiplyBy", &Ctxt::multiplyBy)
     .def("multByConstant", mbc1)
     .def("addConstant", addc1)
+    .def("addCtxt", &Ctxt::addCtxt)
     .def("cleanUp", &Ctxt::cleanUp)
   ;
 
