@@ -1,0 +1,33 @@
+#!/usr/bin/python
+
+import commands, glob, os
+
+
+
+def pyversion():
+    pystr = commands.getoutput('python -V')
+    version = pystr.split(' ')[1]
+    major, minor = version.split('.')[:2]
+    return major + '.' + minor
+
+
+# For Python interface only
+pif_conv = Split("Ctxt_Python EncryptedArray_python pyVectors FHEContext_python PAlgebra_python FHE_python")
+pif_conv_files = [t+".cpp" for t in pif_conv]
+
+pif = Split("PythonWrapper")
+pif_files = [t+".cpp" for t in pif]
+
+# Boost Python Environment
+boost_python_env = Environment(
+    CPPPATH=["/usr/include/python3.5m", "."],
+    CXXFLAGS='-ftemplate-depth-100 -fPIC -Wall -Werror -pedantic -pipe -O3 -ffast-math -march=opteron',
+    #CXXFLAGS='-ftemplate-depth-100 -fPIC -Wall -pedantic -O0 -g',
+    CPPDEFINES=['BOOST_PYTHON_DYNAMIC_LIB'],
+    LIBPATH=["usr/lib/python3.5m/config", "/usr/include", '/usr/local/lib'],
+    LIBS=["python3.5m", "boost_python-py35.so", 'gmp', 'fhe'],
+    SHLIBPREFIX="", #gets rid of lib prefix
+    SHOBJSUFFIX = ".bpo"
+)
+
+boost_python_env.SharedLibrary(target='PythonWrapper', source = pif_conv_files + pif_files)
