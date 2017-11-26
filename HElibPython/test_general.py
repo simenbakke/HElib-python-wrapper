@@ -13,12 +13,12 @@ def test():
     a = pyvector()
     b = pyvector()
 
-    m = FindM(k, L, c, p, d, s, 0, False)
+    m = FindM(k, L, c, p, d, s, 0)
 
     #initialize context
     context = FHEcontext(m, p, r, a, b)
     #modify the context
-    buildModChain(context, L, c, 0)
+    buildModChain(context, L, c)
 
     secretKey = FHESecKey(context)
     publicKey = secretKey
@@ -31,7 +31,7 @@ def test():
 
     #print("G = ", G)
     #print ("context =", context)
-    secretKey.GenSecKey(w, 0, 3)
+    secretKey.GenSecKey(w)
 
     addSome1DMatrices(secretKey, 100, 0)
     #print("keyExists = ", publicKey.keyExists(0))
@@ -54,10 +54,10 @@ def test():
     random(ea, p2)
     random(ea, p3)
 
-    c0 = Ctxt(publicKey, 0)
-    c1 = Ctxt(publicKey, 0)
-    c2 = Ctxt(publicKey, 0)
-    c3 = Ctxt(publicKey, 0)
+    c0 = Ctxt(publicKey)
+    c1 = Ctxt(publicKey)
+    c2 = Ctxt(publicKey)
+    c3 = Ctxt(publicKey)
 
     ea.encrypt_plaintext(c0, publicKey, p0)
     ea.encrypt_plaintext(c1, publicKey, p1)
@@ -78,8 +78,8 @@ def test():
     const1_poly = ZZX()
     const2_poly = ZZX()
 
-    ea.encode(const1_poly, const1)
-    ea.encode(const2_poly, const2)
+    ea.encodeZZXPtxt(const1_poly, const1)
+    ea.encodeZZXPtxt(const2_poly, const2)
 
 
     #Multiply c1 by c0
@@ -90,13 +90,13 @@ def test():
 
     #c0 += random constant
     add(ea, p0, const1)
-    c0.addConstant(const1_poly, -1)
+    c0.addConstantZZX(const1_poly)
     CheckCtxt(c0, "c0+=k1")
     debugCompare(ea, secretKey, p0, c0)
 
     #c2 *= random constant
     mul(ea, p2, const2)
-    c2.multByConstant(const2_poly, -1)
+    c2.multByConstantZZX(const2_poly)
     CheckCtxt(c2, "c2*=k2")
     debugCompare(ea, secretKey, p2, c2)
 

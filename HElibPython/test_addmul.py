@@ -72,7 +72,7 @@ def test():
 
             plainText = pw.NewPlaintextArray(ea)
             cipherText = pw.Ctxt(publicKey, 0)
-            pw.encode2(ea, plainText, vector)
+            pw.encodePtxtVec(ea, plainText, vector)
             ea.encrypt_plaintext(cipherText, publicKey, plainText)
             ptxtListOne.append(plainText)
             ctxtListOne.append(cipherText)
@@ -100,7 +100,7 @@ def test():
 
             plainText = pw.NewPlaintextArray(ea)
             cipherText = pw.Ctxt(publicKey, 0)
-            pw.encode2(ea, plainText, vector)
+            pw.encodePtxtVec(ea, plainText, vector)
             ea.encrypt_plaintext(cipherText, publicKey, plainText)
             ptxtListTwo.append(plainText)
             ctxtListTwo.append(cipherText)

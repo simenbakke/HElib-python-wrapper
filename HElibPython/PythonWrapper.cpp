@@ -57,23 +57,24 @@ void export_FHEContext();
 void export_PAlgebra();
 void export_FHE();
 
+
+
+
 BOOST_PYTHON_MODULE(PythonWrapper)
 {
 
-
-  def("FindM", FindM);
-  def("buildModChain", buildModChain);
+  //Functions for sum and multiply Ctxt
   def("Ctxt_sum", Ctxt_sum);
   def("Ctxt_prod", Ctxt_prod);
-  def("addSome1DMatrices", addSome1DMatrices);
-  def("CheckCtxt", CheckCtxt);
-  def("debugCompare", debugCompare);
-  def("debugCompareVector", debugCompareVector);
-  def("makeIrredPoly", makeIrredPoly);
   def("add_ctxt", add_ctxt);
   def("sub_ctxt", sub_ctxt);
-  def("setTimersOn", setTimersOn);
-  def("resetAllTimers", resetAllTimers);
+
+  //Debug functions
+  def("debugCompare", debugCompare);
+  def("debugCompareVector", debugCompareVector);
+
+  def("makeIrredPoly", makeIrredPoly);
+
 
   //NTL functions
   long (*rb)(long) = &NTL::RandomBnd;
