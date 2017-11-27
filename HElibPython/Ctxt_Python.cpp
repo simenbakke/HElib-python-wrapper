@@ -176,33 +176,33 @@ void export_Ctxt(){
 
     // set as an empty ciphertext
     .def("clear", &Ctxt::clear)
-    //
-    // //! @brief Is this an empty cipehrtext without any parts
-    // .def("isEmpty", &Ctxt::isEmpty)
-    //
-    // //! @brief A canonical ciphertext has (at most) handles pointing to (1,s)
-    // .def("inCanonicalForm", &Ctxt::inCanonicalForm)
-    //
-    // //! @brief Would this ciphertext be decrypted without errors?
-    // .def("isCorrect", &Ctxt::isCorrect)
-    //
-    // // Return r such that p^r = ptxtSpace
-    // .def("effectiveR", &Ctxt::effectiveR)
-    //
-    // //! @brief Returns log(noise-variance)/2 - log(q)
-    // .def("log_of_ratio", &Ctxt::log_of_ratio)
-    //
-    //
-    // .def("negate", &Ctxt::negate)
-    //
-    // // Apply automorphism F(X) -> F(X^k) (gcd(k,m)=1)
-    // .def("automorph", &Ctxt::automorph)
-    //
-    // //! @brief automorphism with re-lienarization
-    // .def("smartAutomorph", &Ctxt::smartAutomorph)
-    //
-    // //! @brief applies the automorphsim p^j using smartAutomorphism
-    // .def("frobeniusAutomorph", &Ctxt::frobeniusAutomorph)
+    
+    //! @brief Is this an empty cipehrtext without any parts
+    .def("isEmpty", &Ctxt::isEmpty)
+
+    //! @brief A canonical ciphertext has (at most) handles pointing to (1,s)
+    .def("inCanonicalForm", &Ctxt::inCanonicalForm)
+
+    //! @brief Would this ciphertext be decrypted without errors?
+    .def("isCorrect", &Ctxt::isCorrect)
+
+    // Return r such that p^r = ptxtSpace
+    .def("effectiveR", &Ctxt::effectiveR)
+
+    //! @brief Returns log(noise-variance)/2 - log(q)
+    .def("log_of_ratio", &Ctxt::log_of_ratio)
+
+
+    .def("negate", &Ctxt::negate)
+
+    // Apply automorphism F(X) -> F(X^k) (gcd(k,m)=1)
+    .def("automorph", &Ctxt::automorph)
+
+    //! @brief automorphism with re-lienarization
+    .def("smartAutomorph", &Ctxt::smartAutomorph)
+
+    //! @brief applies the automorphsim p^j using smartAutomorphism
+    .def("frobeniusAutomorph", &Ctxt::frobeniusAutomorph)
 
     ;
 

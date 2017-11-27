@@ -42,6 +42,10 @@ void debugCompareVector(EncryptedArray& ea, FHESecKey& sk, const vector<ZZX>& p,
 
 }
 
+void printAllTimersPython(){
+  printAllTimers(cout);
+
+}
 void add_ctxt(Ctxt& a, Ctxt& b){
       a += b;
 }
@@ -49,6 +53,7 @@ void add_ctxt(Ctxt& a, Ctxt& b){
 void sub_ctxt(Ctxt& a, Ctxt& b){
       a -= b;
 }
+
 
 void export_EncryptedArray();
 void export_Ctxt();
@@ -73,8 +78,15 @@ BOOST_PYTHON_MODULE(PythonWrapper)
   def("debugCompare", debugCompare);
   def("debugCompareVector", debugCompareVector);
 
+  //timer functions
+  def("setTimersOn", setTimersOn);
+  def("resetAllTimers", resetAllTimers);
+  def("printAllTimers", printAllTimersPython);
+
   def("makeIrredPoly", makeIrredPoly);
 
+  long (*cprod)(const pyvector&) = &computeProd;
+  def("computeProd", cprod);
 
   //NTL functions
   long (*rb)(long) = &NTL::RandomBnd;
@@ -91,8 +103,14 @@ BOOST_PYTHON_MODULE(PythonWrapper)
   class_<NTL::ZZX>("ZZX")
   ;
 
+  class_<FHEtimer>("FHEtimer", no_init)
+    .def(init<const char*, const char*>())
+  ;
 
-
+  class_<auto_timer>("auto_timer", no_init)
+    .def(init<FHEtimer*>())
+    .def("stop", &auto_timer::stop)
+ ;
 
 
 }

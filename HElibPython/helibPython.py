@@ -50,25 +50,25 @@ def test():
 
     #print(pw.Ctxt.isCorrect(ctxt1))
     #print("Encryptes parameters = ", ctxt1, publicKey, v1)
-    ea.encrypt(ctxt1, publicKey, v1)
+    ea.encryptVec(ctxt1, publicKey, v1)
 
     v2 = pw.pyvector()
     ctxt2 = pw.Ctxt(publicKey, 0)
 
     for i in range(0, nslots):
         v2.append(i*3)
-    ea.encrypt(ctxt2, publicKey, v2)
+    ea.encryptVec(ctxt2, publicKey, v2)
 
     ctSum = pw.Ctxt_sum(ctxt1, ctxt2)
     ctProd = pw.Ctxt_prod(ctxt1, ctxt2)
 
     res = pw.pyvector()
-    ea.decrypt(ctSum, secretKey, res);
+    ea.decryptVec(ctSum, secretKey, res);
 
     #for i in range (0, len(res)):
         #print (v1[i], "+", v2[i], "=", res[i])
     #print ("eaBaseTag = ", ea.getTag())
-    ea.decrypt(ctProd, secretKey, res)
+    ea.decryptVec(ctProd, secretKey, res)
     #for i in range (0, len(res)):
         #print (v1[i], "*", v2[i], "=", res[i])
 

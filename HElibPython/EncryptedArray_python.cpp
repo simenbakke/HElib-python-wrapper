@@ -5,9 +5,11 @@ void export_EncryptedArray(){
 
 
 
+  def("negate", ::negate);
+
   //Overloaded functions
-  void (*r1)(const EncryptedArray&, NewPlaintextArray&) = &random;
-  def("random", r1);
+  void (*rf1)(const EncryptedArray&, NewPlaintextArray&) = &random;
+  def("randomEAPtxt", rf1);
 
   void (*m1)(const EncryptedArray&, NewPlaintextArray&, const NewPlaintextArray&) = &mul;
   def("mul", m1);
@@ -33,20 +35,25 @@ void export_EncryptedArray(){
   //Overladed functions in EncryptedArray class
   void (EncryptedArray::*e1)(Ctxt&, const FHEPubKey&, const pyvector&) const = &EncryptedArray::encrypt;
   void (EncryptedArray::*e2)(Ctxt&, const FHEPubKey&, const NewPlaintextArray&) const = &EncryptedArray::encrypt;
+  void (EncryptedArray::*e3)(Ctxt&, const FHEPubKey&, const vector<ZZX>&) const = &EncryptedArray::encrypt;
 
   void (EncryptedArray::*d1)(const Ctxt&, const FHESecKey&, pyvector&) const = &EncryptedArray::decrypt;
   void (EncryptedArray::*d2)(const Ctxt&, const FHESecKey&, NewPlaintextArray&) const = &EncryptedArray::decrypt;
+  void (EncryptedArray::*d3)(const Ctxt&, const FHESecKey&, vector<ZZX>&) const = &EncryptedArray::decrypt;
 
   void (EncryptedArray::*enc1)(ZZX&, const NewPlaintextArray&) const = &EncryptedArray::encode;
   void (EncryptedArray::*enc2)(ZZX&, const vector< ZZX >&) const = &EncryptedArray::encode;
-  void (EncryptedArray::*enc3)(ZZX&, const vector< long >&) const = &EncryptedArray::encode;
-  void (EncryptedArray::*enc4)(zzX&, const vector< long >&) const = &EncryptedArray::encode;
+  void (EncryptedArray::*enc3)(ZZX&, const pyvector&) const = &EncryptedArray::encode;
+  void (EncryptedArray::*enc4)(zzX&, const pyvector&) const = &EncryptedArray::encode;
   void (EncryptedArray::*enc5)(zzX&, const vector< zzX >&) const = &EncryptedArray::encode;
   void (EncryptedArray::*enc6)(zzX&, const NewPlaintextArray&) const = &EncryptedArray::encode;
 
   void (EncryptedArray::*dec1)(vector<long >& , const ZZX&) const = &EncryptedArray::decode;
   void (EncryptedArray::*dec2)(vector<ZZX>& , const ZZX&) const = &EncryptedArray::decode;
   void (EncryptedArray::*dec3)(NewPlaintextArray&, const ZZX&) const = &EncryptedArray::decode;
+
+  void (EncryptedArray::*r1)(pyvector&) const = &EncryptedArray::random;
+  void (EncryptedArray::*r2)(vector<ZZX>&) const = &EncryptedArray::random;
 
   void (EncryptedArray::*eashift)(Ctxt&, long) const = &EncryptedArray::shift;
   void (EncryptedArray::*earotate)(Ctxt&, long) const = &EncryptedArray::rotate;
@@ -67,10 +74,16 @@ void export_EncryptedArray(){
     .def("decodeZZXZZX", dec2)
     .def("decodePtxtZZX", dec3)
 
-    .def("encrypt", e1)
-    .def("encrypt_plaintext", e2)
-    .def("decrypt", d1)
-    .def("decrypt_plaintext", d2)
+    .def("randomVec", r1)
+    .def("randomZZX", r2)
+
+    .def("encryptVec", e1)
+    .def("encryptPtxt", e2)
+    .def("encryptZZX", e3)
+
+    .def("decryptVec", d1)
+    .def("decryptPtxt", d2)
+    .def("decryptZZX", d3)
 
     .def("eashift", eashift)
     .def("earotate", earotate)
