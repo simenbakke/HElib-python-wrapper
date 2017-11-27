@@ -1,5 +1,5 @@
 #include "conv_pif.hpp"
-
+#include <fstream>
 
 using namespace boost::python;
 
@@ -43,7 +43,12 @@ void debugCompareVector(EncryptedArray& ea, FHESecKey& sk, const vector<ZZX>& p,
 }
 
 void printAllTimersPython(){
-  printAllTimers(cout);
+
+  std::ofstream ofs;
+  ofs.open("script/test.txt", std::ofstream::out | std::ofstream::app);
+
+  printAllTimers(ofs);
+  ofs.close();
 
 }
 void add_ctxt(Ctxt& a, Ctxt& b){

@@ -3,7 +3,7 @@ import math
 import os
 import time
 
-def test(R, p, r, d, c, k, w, L, m, gens, ords):
+def test(R, p, r, d, c, k, w, L, m, gens, ords, NoPrint):
     # m = 7781
     # p = 2
     # r = 1
@@ -36,21 +36,12 @@ def test(R, p, r, d, c, k, w, L, m, gens, ords):
     else:
         G = makeIrredPoly(p, d)
 
-    #print("G = ", G)
-    #print ("context =", context)
     secretKey.GenSecKey(w)
-
-    addSome1DMatrices(secretKey, 100, 0)
-    #print("keyExists = ", publicKey.keyExists(0))
-
-    #print ("Key generated")
+    addSome1DMatrices(secretKey)
 
     ea = EncryptedArray(context, G)
-    #print ("EncryptedArray generated")
-    #print (pyvector(G))
-
     nslots = ea.size()
-    #print("nslots = ", nslots)
+
     p0 = NewPlaintextArray(ea)
     p1 = NewPlaintextArray(ea)
     p2 = NewPlaintextArray(ea)
@@ -98,20 +89,23 @@ def test(R, p, r, d, c, k, w, L, m, gens, ords):
         #Multiply c1 by c0
         mul(ea, p1, p0)
         c1.multiplyBy(c0)
-        CheckCtxt(c1, "c1*=c0")
-        debugCompare(ea, secretKey, p1, c1)
+        if not NoPrint:
+            CheckCtxt(c1, "c1*=c0")
+        #debugCompare(ea, secretKey, p1, c1)
 
         #c0 += random constant
         add(ea, p0, const1)
         c0.addConstantZZX(const1_poly)
-        CheckCtxt(c0, "c0+=k1")
-        debugCompare(ea, secretKey, p0, c0)
+        if not NoPrint:
+            CheckCtxt(c0, "c0+=k1")
+        #debugCompare(ea, secretKey, p0, c0)
 
         #c2 *= random constant
         mul(ea, p2, const2)
         c2.multByConstantZZX(const2_poly)
-        CheckCtxt(c2, "c2*=k2")
-        debugCompare(ea, secretKey, p2, c2)
+        if not NoPrint:
+            CheckCtxt(c2, "c2*=k2")
+        #debugCompare(ea, secretKey, p2, c2)
 
         tmp_p = NewPlaintextArray(p1)
         tmp = Ctxt(c1)
@@ -119,39 +113,45 @@ def test(R, p, r, d, c, k, w, L, m, gens, ords):
         strbuffer += str(shamt)
         shift(ea, tmp_p, shamt)
         ea.eashift(tmp, shamt)
-        CheckCtxt(tmp, strbuffer)
-        debugCompare(ea, secretKey, tmp_p, tmp)
+        if not NoPrint:
+            CheckCtxt(tmp, strbuffer)
+        #debugCompare(ea, secretKey, tmp_p, tmp)
         #print(strbuffer)
 
         #c2 += tmp
         add(ea, p2, tmp_p)
         add_ctxt(c2, tmp)
-        CheckCtxt(c2, "c2+=tmp")
-        debugCompare(ea, secretKey, tmp_p, tmp)
+        if not NoPrint:
+            CheckCtxt(c2, "c2+=tmp")
+        #debugCompare(ea, secretKey, tmp_p, tmp)
 
         strbuffer = "c2>>>="
         strbuffer += str(rotamt)
         rotate(ea, p2, rotamt)
         ea.earotate(c2, rotamt)
-        CheckCtxt(c2, strbuffer)
-        debugCompare(ea, secretKey, p2, c2)
+        if not NoPrint:
+            CheckCtxt(c2, strbuffer)
+        #debugCompare(ea, secretKey, p2, c2)
 
         negate(ea, p1)
         c1.negate()
-        CheckCtxt(c1, "c1=-c1")
-        debugCompare(ea, secretKey, p1, c1)
+        if not NoPrint:
+            CheckCtxt(c1, "c1=-c1")
+        #debugCompare(ea, secretKey, p1, c1)
 
         #c3.multiplyBy(c2)
         mul(ea, p3, p2)
         c3.multiplyBy(c2)
-        CheckCtxt(c3, "c3*=c2")
-        debugCompare(ea, secretKey, p3, c3)
+        if not NoPrint:
+            CheckCtxt(c3, "c3*=c2")
+        #debugCompare(ea, secretKey, p3, c3)
 
         #c0 -= c3
         sub(ea, p0, p3)
         sub_ctxt(c0, c3)
-        CheckCtxt(c0, "c0=-c3")
-        debugCompare(ea, secretKey, p0, c0)
+        if not NoPrint:
+            CheckCtxt(c0, "c0=-c3")
+        #debugCompare(ea, secretKey, p0, c0)
 
     c0.cleanUp()
     c1.cleanUp()
@@ -184,15 +184,15 @@ def test(R, p, r, d, c, k, w, L, m, gens, ords):
         print("BAD")
 
     Check_auto.stop()
-    print("\n")
-    printAllTimers()
+    # print("\n")
+    # printAllTimers()
 
 if __name__ == "__main__":
 
     setTimersOn()
 
     # number of rounds
-    R = 1000
+    R = 10
 
     # plaintext base
     p = 2
@@ -233,11 +233,13 @@ if __name__ == "__main__":
     # PRG specified
     seed = 0
 
+    NoPrint = 0
+
     if L == 0:
         L = 3*R+3
         if p > 2 or r > 1:
             addPerRound = 2 * math.ceil(math.log(p)*r*3)/(math.log(2.0)*44) + 1
-            L += R *addPerRound
+            L += R * addPerRound
 
     # hamming weight of secret key
     w = 64
@@ -247,4 +249,4 @@ if __name__ == "__main__":
     m = FindM(k, L, c, p, d, s, chosen_m)
 
     for i in range(repeat):
-        test(R, p, r, d, c, k, w, L, m, gens, ords)
+        test(R, p, r, d, c, k, w, L, m, gens, ords, NoPrint)
