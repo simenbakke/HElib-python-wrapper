@@ -1,6 +1,6 @@
 \chapter{Approach}
 
-This chapter outlines the methodology and actions used to create the Python API of a Homomorphic Encryption Library. We will also take a look at how we can test the Python API to measure the difference in performance between the C++ library and the Python library. We will explain the approach of choosing a Python wrapper for the C++ code. And we will look at how we can determine possible usages and limitations of the library.
+This chapter outlines the methodology and actions which will be taken to create a Fully Homomorphic Encryption API in Python. We will also take a look at how we can test the Python API to measure the difference in performance between the C++ library and the Python library. We will explain the approach of choosing a Python wrapper for the C++ code. And we will look at how we can determine possible usages and limitations of the library.
 
 
 
@@ -8,7 +8,7 @@ This chapter outlines the methodology and actions used to create the Python API 
 
 \section{Objectives}
 
-The main objective of this thesis is to create a Fully Homomorphic Encryption API in Python and measure the performance to get a sense of how far we have come in the development and implementation of FHE schemes. The Python API will be based an already existing C++ library called HElib. The Python API need to support a majority of the existing functions of HElib  to classify it as a FHE API. Ideally the Python API should not be significantly slower than the C++ library i terms of compilation time and performance. Lastly we want to use the performance measurements of the API to find scenarios which a Python FHE can be useful.
+The main objective of this thesis is to create a Fully Homomorphic Encryption API in Python and measure the performance to get a sense of how far we have come in the development and implementation of FHE schemes. The Python API will be based on an already existing FHE library. The Python API should support a multitude of functions in order to classify it as a FHE API. Ideally the Python API should not be significantly slower than the original library in terms of compilation time and runtime. Lastly we want to highlight the benefits/drawbacks of having a FHE scheme in Python and find potential usages of the API.
 \\\\
 The thesis work is structured into the following three stages
 \\\\
@@ -18,14 +18,33 @@ The thesis work is structured into the following three stages
 
 \section{Design Stage}
 
-In the design stage we will plan the necessary steps to implement a solution which satisfies the objectives mentioned above. As we have number of different objectives the design stage is divided into several steps which is outlined below.
+In the design stage we will discuss the necessary steps to design a solution which satisfies the objectives mentioned above. For simplicity sake the design stage is divided into several steps needed to fulfill the requirements of the objectives, these are outlined below.
 \\\\
-1. Explore and choose a C++ wrapper for python\\\\
-2. Create a model of the API\\\\
+
+1. Research and choose a suiting C++ wrapper for python\\\\
+2. Create an API which is easily understood\\\\
 3. Find a suitable model for testing the API
 
 \subsection{C++ wrapper for Python}
-In the first task of the design stage we will examine different C++ wrappers to find one that is suitable to wrap the HElib library to python. This includes examining the HElib library to see how it is built. We need to find out if this is a shared/private library and also look at the code to see if there is any special object types. As the HElib library is built on the NTL mathematical library the chances are great that there will be some non standard objects. Finding a wrapper which supports the different object types including user defined object types are important to be able to wrap the code properly.
+In this section we will examine different C++ wrappers to find one that is suitable to wrap the FHE scheme to python. Before choosing the wrapper the FHE scheme implementation should be examined to see if there are some special functionality the wrapper should support. If the FHE scheme have a lot of user defined objects or any other functionality, the wrapper chosen should be able to handle this in a somewhat simple matter. The main goal of this exercise is to find a wrapper to create a Python API from an already existing FHE scheme. The wrapper should ideally have a good performance i terms of runtime and the API created with the wrapper should be well structured and easily organizable.
 
-\subsection{Create a model for the API}
-There are currently few options when it comes to FHE libraries in Python. When the Python API is created it is important that the API is well explained and the potential usages to be shown. As of today the HElib library are not easily understood as to how to use it properly. This means it is even more important that the API is well documented with examples making it usable for anyone easily. There will also almost certain be differences between the API and the currently existing library as C++ and Python does not handle all objects and types the same way.  
+\subsection{Create the API}
+There are currently few options when it comes to FHE libraries in Python. When the Python API is created it is important that the API is well structured, well documented and it should include examples for potential usages. Ideally the Python API should be as similar to the underlying library as possible, making it easier for the user to find valuable documentation on how to use the library. The library being wrapped to Python is most likely an extensive library which means the user should be able to use the documentation for the API combined with the underlying library documentation for a more thorough understanding on how to use the API to the full extent. Any differences between the API and the underlying library should be highlighted making it easy for the user to see the parallels between the API and the library. As the underlying library is most likely an extensive library it will consist of many files. When creating the Python API this needs to be taken into consideration as the API should be presented in a lucid manner corresponding to the underlying library. As the underlying library will most likely be large it should also be taken into consideration how much of the library should be wrapped to Python to support the functionality required by an FHE scheme.
+
+\subsection{Find a suitable model for testing the API}
+Once the API is created the performance of the Python API should be measured with regards to the existing library in C++. A benchmark test should be created on the existing C++ library which can be used in comparison to the Python API. The tests created should include most of the functions wrapped to Python to see if there are some operations or functions which are slower than others in regards to the benchmarks. If a function or an operation is slower than others it should be investigated to provide an explanation why this is the case and possible solutions to the result. The tests implemented should not only serve as a measurement in performance but also as examples to potential usages of the library. The tests should show how the library can be used in different scenarios and also show the limitations to the library. It's important that the tests highlight the benefits and drawbacks of having the FHE scheme implemented in Python compared to the C++ implementation. If there are other implementations of a FHE scheme in Python this could be used in the testing phase to measure the difference in performance in terms of runtime and functionality compared to the API implemented.
+
+During the research stage of the assignment an implementation of the FHE scheme in Python was found. This implementation does have some limited functionality compared to the existing C++ library, but it can be used as a comparison to our implementation. We should look at this library to compare the difference in performance and functionality to our implementation of the HElib library.
+
+\newpage
+\section{Implementation stage}
+The implementation stage is divided into a few objectives to satisfy the goals outlined in the design stage.
+
+
+1. Choose an underlying FHE scheme implementation\\\\
+2. Creating the Python API \\\\
+3. Create tests to measure the performance \\\\
+
+\subsection{Choose a Fully Homomorphic Scheme implementation}
+In the first task of the implementation stage a FHE scheme should be chosen as the basis of the Python API. Research should be done to explore the different existing implementations of FHE which are available. The FHE scheme chosen should be an up-to date implementation which addresses some of the main problems of FHE like the increasing key-size and computation performance. This is important as this scheme will later be used to see the potential usages and see how far the development of an FHE scheme has come.\\\\
+The FHE scheme should be open source making it easier to access additional information and examples on how the scheme is implemented.

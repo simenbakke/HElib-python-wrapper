@@ -16,14 +16,17 @@
 \contentsline {section}{\numberline {3.1}Objectives}{6}{section.3.1}
 \contentsline {section}{\numberline {3.2}Design Stage}{7}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}C++ wrapper for Python}{7}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Create a model for the API}{7}{subsection.3.2.2}
-\contentsline {chapter}{\numberline {4}Design}{9}{chapter.4}
-\contentsline {section}{\numberline {4.1}C++ wrapper for Python}{9}{section.4.1}
-\contentsline {chapter}{\numberline {5}Discussion}{10}{chapter.5}
-\contentsline {section}{\numberline {5.1}asdf}{10}{section.5.1}
-\contentsline {chapter}{\numberline {6}Conclusion}{12}{chapter.6}
-\contentsline {section}{\numberline {6.1}Future Work}{12}{section.6.1}
-\contentsline {chapter}{Bibliography}{13}{chapter*.11}
-\contentsline {chapter}{Appendices}{15}{section*.12}
+\contentsline {subsection}{\numberline {3.2.2}Create the API}{7}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Find a suitable model for testing the API}{8}{subsection.3.2.3}
+\contentsline {section}{\numberline {3.3}Implementation stage}{9}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Choose a Fully Homomorphic Scheme implementation}{9}{subsection.3.3.1}
+\contentsline {chapter}{\numberline {4}Design}{11}{chapter.4}
+\contentsline {section}{\numberline {4.1}C++ wrapper for Python}{11}{section.4.1}
+\contentsline {chapter}{\numberline {5}Discussion}{12}{chapter.5}
+\contentsline {section}{\numberline {5.1}asdf}{12}{section.5.1}
+\contentsline {chapter}{\numberline {6}Conclusion}{14}{chapter.6}
+\contentsline {section}{\numberline {6.1}Future Work}{14}{section.6.1}
+\contentsline {chapter}{Bibliography}{15}{chapter*.11}
+\contentsline {chapter}{Appendices}{17}{section*.12}
 \setcounter {tocdepth}{0}
-\contentsline {chapter}{\numberline {A}tttt}{17}{Appendix.a.A}
+\contentsline {chapter}{\numberline {A}tttt}{19}{Appendix.a.A}
