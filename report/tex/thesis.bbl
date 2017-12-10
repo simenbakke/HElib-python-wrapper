@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{Esteva2017}
 A.~Esteva, B.~Kuprel, R.~A. Novoa, J.~Ko, S.~M. Swetter, H.~M. Blau, and
@@ -10,5 +10,57 @@ A.~Esteva, B.~Kuprel, R.~A. Novoa, J.~Ko, S.~M. Swetter, H.~M. Blau, and
 ``Homesite quote conversion.''
   \url{https://www.kaggle.com/c/homesite-quote-conversion}.
 \newblock Accessed: 2017-30-05.
+
+\bibitem{cryptoeprint:2011:277}
+Z.~Brakerski, C.~Gentry, and V.~Vaikuntanathan, ``Fully homomorphic encryption
+  without bootstrapping.'' Cryptology ePrint Archive, Report 2011/277, 2011.
+\newblock \url{https://eprint.iacr.org/2011/277}.
+
+\bibitem{cryptoeprint:2012:078}
+Z.~Brakerski, ``Fully homomorphic encryption without modulus switching from
+  classical gapsvp.'' Cryptology ePrint Archive, Report 2012/078, 2012.
+\newblock \url{https://eprint.iacr.org/2012/078}.
+
+\bibitem{cryptoeprint:2013:094}
+A.~Lopez-Alt, E.~Tromer, and V.~Vaikuntanathan, ``On-the-fly multiparty
+  computation on the cloud via multikey fully homomorphic encryption.''
+  Cryptology ePrint Archive, Report 2013/094, 2013.
+\newblock \url{https://eprint.iacr.org/2013/094}.
+
+\bibitem{cryptoeprint:2013:340}
+C.~Gentry, A.~Sahai, and B.~Waters, ``Homomorphic encryption from learning with
+  errors: Conceptually-simpler, asymptotically-faster, attribute-based.''
+  Cryptology ePrint Archive, Report 2013/340, 2013.
+\newblock \url{https://eprint.iacr.org/2013/340}.
+
+\bibitem{halevi2014helib}
+S.~Halevi and V.~Shoup, ``Helib,'' {\em Retrieved from HELib: https://github.
+  com. shaih/HElib}, 2014.
+
+\bibitem{ducas2015fhew}
+L.~Ducas and D.~Micciancio, ``Fhew: Bootstrapping homomorphic encryption in
+  less than a second.,'' {\em EUROCRYPT (1)}, vol.~9056, pp.~617--640, 2015.
+
+\bibitem{regev2009lattices}
+O.~Regev, ``On lattices, learning with errors, random linear codes, and
+  cryptography,'' {\em Journal of the ACM (JACM)}, vol.~56, no.~6, p.~34, 2009.
+
+\bibitem{cryptoeprint:2014:094}
+J.~Alperin-Sheriff and C.~Peikert, ``Faster bootstrapping with polynomial
+  error.'' Cryptology ePrint Archive, Report 2014/094, 2014.
+\newblock \url{https://eprint.iacr.org/2014/094}.
+
+\bibitem{chillotti2016tfhe}
+I.~Chillotti, N.~Gama, M.~Georgieva, and M.~Izabach{\`e}ne, ``Tfhe: Fast fully
+  homomorphic encryption library over the torus,'' 2016.
+
+\bibitem{abrahams2003building}
+D.~Abrahams, R.~W. Grosse-Kunstleve, and O.~Overloading, ``Building hybrid
+  systems with boost. python,'' {\em CC Plus Plus Users Journal}, vol.~21,
+  no.~7, pp.~29--36, 2003.
+
+\bibitem{Pyfhelhelib}
+A.~Ibarrondo, ``Pyfhel,'' {\em Retrieved from Pyfhel:
+  https://github.com/ibarrond/Pyfhel}, 2017.
 
 \end{thebibliography}

@@ -13,11 +13,13 @@
 \BOOKMARK [1][-]{section.3.2}{Design Stage}{chapter.3}% 13
 \BOOKMARK [1][-]{section.3.3}{Implementation stage}{chapter.3}% 14
 \BOOKMARK [0][-]{chapter.4}{Design}{}% 15
-\BOOKMARK [1][-]{section.4.1}{C++ wrapper for Python}{chapter.4}% 16
-\BOOKMARK [0][-]{chapter.5}{Discussion}{}% 17
-\BOOKMARK [1][-]{section.5.1}{asdf}{chapter.5}% 18
-\BOOKMARK [0][-]{chapter.6}{Conclusion}{}% 19
-\BOOKMARK [1][-]{section.6.1}{Future Work}{chapter.6}% 20
-\BOOKMARK [0][-]{chapter*.11}{Bibliography}{}% 21
-\BOOKMARK [0][-]{section*.12}{Appendices}{}% 22
-\BOOKMARK [0][-]{Appendix.a.A}{tttt}{}% 23
+\BOOKMARK [1][-]{section.4.1}{HElib design}{chapter.4}% 16
+\BOOKMARK [0][-]{chapter.5}{Implementation}{}% 17
+\BOOKMARK [1][-]{section.5.1}{Wrapping the code}{chapter.5}% 18
+\BOOKMARK [0][-]{chapter.6}{Discussion}{}% 19
+\BOOKMARK [1][-]{section.6.1}{asdf}{chapter.6}% 20
+\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 21
+\BOOKMARK [1][-]{section.7.1}{Future Work}{chapter.7}% 22
+\BOOKMARK [0][-]{chapter*.15}{Bibliography}{}% 23
+\BOOKMARK [0][-]{section*.16}{Appendices}{}% 24
+\BOOKMARK [0][-]{Appendix.a.A}{tttt}{}% 25
