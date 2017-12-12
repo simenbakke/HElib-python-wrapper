@@ -1,76 +1,73 @@
 \chapter{Background}
-This chapter describes relevant technical background and relevant work. We will first define the field of machine learning, and then describe the methods that have been used in this thesis. We will explain feature extraction for audio signals using spectrograms. We will also describe recent relevant work that uses the same machine learning methods and feature extractions methods as in this thesis.
-\section{Machine learning}
-%http://publications.idiap.ch/downloads/papers/2015/Revaz_THESIS_2015.pdf
-%hva er det (for dummies)%
-Donec id massa ac leo consequat euismod et a sem. Pellentesque sem justo, vulputate vel neque a, ultrices dapibus ipsum. Vestibulum orci orci, semper ut odio et, luctus condimentum nunc.
-\cite{Esteva2017}.Mauris vel interdum nunc. Curabitur mi lectus, rhoncus venenatis ullamcorper quis, mattis volutpat dui. Proin at lectus ac metus ornare lacinia et pretium risus \cite{Homesite2017}.
-%Some of the most
-\subsubsection{Accuracy}
 
-$$ \text{Accuracy} = \frac{TP + TN}{P+N}$$
-Aenean rhoncus, nisi in suscipit aliquet, eros diam tempus nunc, non luctus turpis mauris ut lorem. Nulla sed scelerisque mauris.
-\subsubsection{Recall}
-Aenean rhoncus, nisi in suscipit aliquet, eros diam tempus nunc, non luctus turpis mauris ut lorem. Nulla sed scelerisque mauris.
-$$ \text{Recall}= \frac{TP}{TP + FN}$$
-Aenean rhoncus, nisi in suscipit aliquet, eros diam tempus nunc, non luctus turpis mauris ut lorem. Nulla sed scelerisque mauris.
-\subsubsection{Precision}
+\section{Homomorphic encryption}
+``The method used in the calculation of encrypted information without the need for decryption is known as homomorphic encryption'' \cite{wired2014}.
+For instance, a search engine that is homomorphically encrypted can take encrypted search terms and compare it with an encrypted index. A financial database that is homomorphically encrypted can allow the users to inquire the amount of money that an employee earned in the past. The input of employee name would be encrypted and so would the result given. This avoids any problems in privacy that is seen in online services that deal with sensitive data. Notably, many encryption schemes enable homomorphic encryption that is partial like RSA, Paillier, Benaloh, ElGamal. Partial Homomorphic Encryption implies that the scheme have some homomorphic properties like addition or multiplication but not both. \\\\
+Homomorphic in mathematics explains the shift of one data set into another and at the same time, there is the preservation of relationships between the elements in both sets \cite{tech2011}. In modern cryptography, fully homomorphic encryption is among the holy grails. It is a form of encryption that enables the assessment of arbitrarily complex programs on encrypted data\cite{brakerski2011fully}. Rivest Adleman together with Dertouzos are the ones who suggested this problem in 1978 \cite{rivest1978}. Late on thirty years later there was the first plausible fully homomorphic encryption candidate. This finding or rather discovery was made possible by Gentry's work \cite{gen09b} \cite{gen10}. \\\\
+The main building block in Gentry's solution was based on the complexity of the problems on ideal lattices \cite{brakerski2011fully}. Lattices have become standard fare when it comes to cryptography. Very little is known about the ideal lattices although the lattices problems have been well researched and studied. In order to build fully homomorphic encryption, the ideals are a mathematical object to be utilized. This is due to the fact that they have support for multiplication and addition. It is significant to note that all the fully homomorphic encryptions rely on the ideals found in various rings.
+Additionally, looking at the discovery of Gentry in the attainment of full homomorphism he had to perform building through a destroying step that made him add more complex assumption. Notably, all the subsequent solutions faced similar difficulty as Gentry when attaining fully homomorphic encryption. They depended on the assumption of sparse subset-sum hence making them counter the difficulty.The added assumption is seen to be the main limitation to the solution of Gentry. The removal of this assumption has been the open problem in fully homomorphic encryption schemes’ design \cite{brakerski2011fully}.
+As mentioned previously, RSA have some homomorphic properties, namely multiplication.
+For instance given RSA public key $pk = (N,e)$ and ciphertexts $\left \{ \psi \leftarrow \pi _{i}^{e}mod N\left \right \}$, one is able to compute $\left ( \prod _{i} \pi i \right )^{e} mod N$ which a ciphertext that encrypts the original plaintexts products\cite{gen09b}.
+\\\\
+According to Rivest, one can compute arbitrarily on data that is encrypted when dealing with an encryption scheme that is homomorphic fully\cite{gen09b}. This means that one can process encrypted data through querying, writing into it and anything else that can be considered to be or rather that can be represented as a circuit without the requirement of a decryption key\cite{gen09b}. A suggestion of private data banks was made whereby there is storage of data on the untrusted server in encryption form by a user while at the same time allowing the server to process and give a response. The server is responsible for sending all the data that is encrypted back to the user for processing. It is essential to note that a public encryption scheme E that is homomorphic contains 4 algorithms which include keyGen, Encrypt, Evaluate and Decrypt.
+Fully homomorphic encryption is at times known as crypto-computing whereby it is seen as a method of capturing the imagination. Fully homomorphic encryption is seen as a technology that would completely reduce the weaknesses found in the security systems \cite{green2012}. \\\\
+The lack of requirement for decryption before the processing of data makes it an asset when it comes to privacy concerns. However, there is a problem in the implementation of this idea. In the 80’s and 90’s, the researchers introduced many schemes. Most of these schemes had support for addition and multiplication. However, they were not able to handle both operations simultaneously as there were limitations. This inability was a frustrating thing to the researchers. In order to attain arbitrary computation, they needed to come up with this doubly homomorphic scheme. A doubly homomorphic encryption scheme can be said to be a scheme that encrypts bits.
 
-\section{Deep learning}
-\subsection{Convolutional neural network}
-Aenean rhoncus, nisi in suscipit aliquet, eros diam tempus nunc, non luctus turpis mauris ut lorem. Nulla sed scelerisque mauris. Figure \ref{fig:cnn_layer} shows an illustration of the convolutional layer.
+\newpage
+This means that the plaintext is either 1 or 0. For instance we can have a ciphertext that encrypts bits X and Y(Green 2012).This scheme can be used in the computation of $1+X*Y$.The product of this function would the following truth table \ref{my-label}. The truth table describes a NAND gate which is a big deal to any computer engineer as one can derive all other useful boolean logic gates: AND, OR, NOT, XOR and XNOR \cite{green2012}.
 
-\begin{figure}[h]
-\begin{center}
-  \includegraphics[width=3in]{../fig/cnn_conv.png}
-  \caption{Illustration of the convolutional layer . The red box is the input, and blue box is the result. The width and height of the input is preserved, but since the convolutional filter has 32 filters, the depth of the output volume is 32 pixels.}
-  \label{fig:cnn_layer}
-\end{center}
-\end{figure}
-
-\section{Classification vs. detection}
-\label{sec:object_detection}
+\begin{table}[]
+\centering
+\caption{NAND gate truth table}
+\label{my-label}
+\begin{tabular}{llll}
+A & B & : & 1+A*B \\
+0 & 0 &   & 1     \\
+0 & 1 &   & 1     \\
+1 & 0 &   & 1     \\
+1 & 1 &   & 0
+\end{tabular}
+\end{table}
 
 
-\begin{figure}[h]
-  \begin{subfigure}[b]{0.245\textwidth}
-    \centering
-    \textbf{Classification}\par\medskip
-    \includegraphics[width=\textwidth]{../fig/cat.jpg}
-    \caption{Cat}
-    \label{fig:CatOne}
-  \end{subfigure}
-  %\quad
-  \begin{subfigure}[b]{0.245\textwidth}
-    \centering
-    \textbf{Localization}\par\medskip
-    \includegraphics[width=\textwidth]{../fig/cat_localization.jpg}
-    \caption{Cat}
-    \label{fig:CatTwo}
-  \end{subfigure}
-  %\quad
- \begin{subfigure}[b]{0.245\textwidth}
-   \centering
-   \textbf{Detection}\par\medskip
-    \includegraphics[width=\textwidth]{../fig/cat_dog_detection.jpg}
-    \caption{Cat, Dog}
-    \label{fig:CatDogOne}
-  \end{subfigure}
-  %\quad
-  \begin{subfigure}[b]{0.245\textwidth}
-    \centering
-    \textbf{Segmentation}\par\medskip
-     \includegraphics[width=\textwidth]{../fig/cat_dog_segmentation.jpg}
-     \caption{Cat, Dog}
-     \label{fig:CatDogTwo}
-   \end{subfigure}
-  \caption{Vizualisation of four different image recognition tasks }
-  \label{fig:class_det}
-\end{figure}
 
-\begin{itemize}
-\item \textbf{Classification:} Donec id massa ac leo consequat euismod et a sem. Pellentesque sem justo, vulputate vel neque a, ultrices dapibus ipsum. Vestibulum orci orci, semper ut odio et, luctus condimentum nunc.
-\item \textbf{Object localization:} Donec id massa ac leo consequat euismod et a sem. Pellentesque sem justo, vulputate vel neque a, ultrices dapibus ipsum. Vestibulum orci orci, semper ut odio et, luctus condimentum nunc.  the size of the bounding box.
-\item \textbf{Object detection:}Donec id massa ac leo consequat euismod et a sem. Pellentesque sem justo, vulputate vel neque a, ultrices dapibus ipsum. Vestibulum orci orci, semper ut odio et, luctus condimentum nunc.
+It is important to note that homomorphic schemes that are not secure semantically such as RSA have stronger attacks. There is the statement by Boneh and Lipton that an algebraic privacy homomorphism that is over ring has the ability to be broken in sub-exponential time under an assumption that is number theoretic \cite{gen09b}. This is based on whether the scheme is deterministic or has the ability to provide an equal oracle. It is also seen that both Micalli and Goldwasser had a proposal for a homomorphic encryption that is semantically secure \cite{gen09b}. This scheme is additively homomorphic over Z2. By this, it means that XOR gates are contained in the permitted circuits set CE. Additionally, a number of homomorphic encryption schemes utilize linear codes or lattices. Boneh-Goh-Nissim and Polly cracker are some of the examples schemes that are semantically secure.\\\\
+Sanders and Young are some of the researchers that utilize homomorphic encryption that is circuit private additively on the building of a circuit –private scheme that has the ability to handle NC1 circuits \cite{gen09b}. On the other hand, Paskin and Ishai perform this for purposes of branching programs that cover the NC1 circuits. Notably, their schemes have shorter ciphertexts’ that are proportional to the branching program length.
+An observation from Gentry’s work is if C- homomorphic scheme’s decryption circuit exists in C then it is likely that the scheme can be changed into a scheme that is fully homomorphic \cite{brakerski2011fully}. A C-homomorphic scheme is a scheme that enables assessment of any circuit contained in class C. It is hard to come across an encryption scheme that has the ability to assess an addition non-trivial number and multiplication operations.
+\newpage
+The solution by Gentry to this problem depended on the ideals algebraic notion in rings. In a situation that is high level, the message is said to be a ring element and there is masking of the ciphertext with some noise. Therefore the ciphertext form is m+xI, for some x in the ring where m is the message and the noise belongs to an ideal I. The ideal l contains two major properties which are first whereby the element is said to mask the message and the second is the possibility of generating a secret trap door that destroys the ideal. Importantly, the first property ensures there is security and the second allows the decryption of the ciphertexts.For instance in a case where F1 and F2 are encryptions belonging to n1 and n2 respectively then $F1F2=(n1+ xl)(n2+yl)=n1x +xyl)l-n1n2+zl$ \cite{brakerski2011fully}. \\\\
+The ideal is destroyed during the decryption process and there is survival of product n1n2. Therefore F1F2  is an encryption to  n1n2 as needed. The mentioned solution is required based on the first property which is an assumption of complexity on ideals in various rings. Hence one can say that the original work of Gentry depended on the complexity assumptions on ideal lattices. Moreover, there is also a homomorphic scheme that depends on the complexity of learning with errors problem which is abbreviated as LWE. In its assumption, it states that if s$\varepsilon Z_{q}^{n}$ is a dimensional vector for n then any polynomial number of random linear combinations of coefficients of s are undifferentiated computationally from the random elements in Zq that are uniform \cite{brakerski2011fully}. There is no reference to ideals in the LWE assumption. The LWE problem is similarly complex to the finding short vectors in any lattice. Earlier on, there was an observation of better comprehension of the lattice problems’ complexity in comparison to the corresponding problems found on ideal lattices. In the building of efficient and cryptographic schemes that are highly expressive, the LWE assumption is seen to be agreeable \cite{brakerski2011fully}. \\\\
+The utilization of LWE in the building of a fully homomorphic encryption scheme is a show of the elegance and power of LWE. Encryption schemes building whereby its security depends on LWE assumption is seen to be straightforward. For instance in the encryption of a bit m utilizing secret keys s$\varepsilon Z_{q}^{n}$, there is a selection of a random vector a$\varepsilon Z_{q}^{n}$. An observation of the decryption is that the 2 masks do not interrupt each other. This means that through destroying the two masks, one can decrypt this ciphertext \cite{brakerski2011fully}. Notably, decryption algorithm first calculates the mask (a,s) and there is a subtraction from b. Despite this scheme being homomorphic, that is naturally addictive, there is a presentation of a problem. Basing on the work of Gentry and Halevi, there is shown that the scheme supports only one single homomorphic multiplication with the risk of causing a big destruction to the ciphertext. In order to comprehend the scheme’s homomorphic properties, one can also look at the decryption algorithm \cite{brakerski2011fully}.\\\\
 
-\end{itemize}
+\section{Bootstrapping and Full Homomorphism}
+In the building of fully homomorphic encryption, Gentry talked of a number of steps that are involved. First, there is the building of a somewhat homomorphic scheme which has support for low degree polynomial assessment when it comes to the encrypted data (Sen 2013). The next thing is the squashing of the procedure of decryption in order to express it as a low degree polynomial supported by the scheme. The final step is the application of the bootstrapping transformation so as to attain a homomorphic scheme that is full. A bootstrappable scheme is a moment that the polynomial degree able to be assessed by the scheme surpasses the decryption polynomial degree by a two factor \cite{sen2013homomorphic}.\\\\
+The designing of a bootstrappable scheme is said to be done through a somewhat homomorphic scheme that is a GGH-type scheme over ideal lattices. With the use of a key generation procedure that is appropriate, the scheme’s security made to be a number of lattice problems’ worst case complexity. The lack of the somewhat homomorphic scheme being bootstrappable, led to Gentry explaining a transformation needed to crush the process of decryption \cite{sen2013homomorphic}. In return, the decryption polynomial degree is reduced. This scenario is made possible by the addition of a public key and an extra secret key hint in a sparse subset-sum problem form.
+There is an augmentation of the public key with a huge set of vectors. Post-processing of the ciphertext can be done by utilization of the additional hint. Low degree polynomial decryption of the ciphertext that is post-processed takes place resulting in a bootstrappable scheme. Even in the scheme’s private key version, the secret key is a short support of random ideal lattice.There is a complication in the generation of public pairs using the appropriate distributions needed for reduction of the worst case to average case.\\\\
+NTRU cryptosystem is the origin for the use of ideal lattice in cryptography \cite{sen2013homomorphic}. Ideal lattices are utilized in this approach for cryptographic buildings that are efficient. Compared to the normal lattices, the ideal lattices’ added structure cause their representation to be more powerful and allows the computation to be faster.
+There is the raising of the question whether ideal lattices and LWE can be used together to attain the benefits of the two at the same time. This means that the efficiency and simplicity in LWE and the powerfulness in ideal lattices are achieved at the same period. A research by Brakerski showed that this can be achieved. There is the building of the somewhat homomorphic scheme depending on the LWE. An inheriting of the competence and ease together with worst case association in ideal lattices takes place. Additionally, there is the enjoyment of the security of key-dependent message. This is due to the fact that there is secure encryption of its own secret key polynomial functions.
+
+
+\section{HElib}
+The HElib is a homomorphic encryption library which is implemented using the Brakerski-Gentry-Vaikuntanatham(BGV) scheme. HElib together with other optimizations allows the assessment of homomorphic to be faster concentrating mainly on the utilization of smart-vercauteren ciphertext. The BGV variant implemented is defined over polynomial rings of the form $\mathbb{A} = \mathbb{Z}\left [ X \right ]/\phi _{m}(X)$ where m is a parameter and $\phi _{m}(X)$ is the m'th cyclotomic polynomial\cite{halevi2013design}. In this scheme the ``native'' plaintext space is usually the ring $\mathbb{A}_{2}=\mathbb{A}/2\mathbb{A}$, which is namely binary polynomials modulo $\phi _{m}(X)$. With the use of the Smart-Vercauteren CRT-based encoding technique the vectors of bits in a binary polynomial are ``packed'' so a polynomial arithmetic in $\mathbb{A}_{2}$ translates to entry-wise arithmetic on the packed bits. In the scheme the ciphertext space consists of vectors over $\mathbb{A}_{q} = \mathbb{A}/q\mathbb{A}$ where q is an odd modulus that evolves with the homomorphic evaluation. The system is parametrized by a ``chain'' of moduli of decreasing size, $q0<q1...<qL$ and freshly encrypted ciphertext are defined over $R_{qL}$\cite{halevi2013design}. By switching to smaller and smaller moduli during homomorphic evaluation until we cannot compute anymore, we get the ciphertexts over \mathbb{A}_{q0}
+
+The present state of HElib allows only for use by researchers that work on homomorphic encryption and it utilizations. It is considered to be a homomorphic encryption’s assembly language. This means that HElib offers low-level procedures with plenty optimizations access. It is expected that in future it will be able to offer high-level procedures.
+
+\newpage
+\section{Application of Homomorphic}
+Homomorphic encryption is utilized in many areas. One of the applications of homomorphic encryption is in private medical records. It is noted that the providers of healthcare upload medical records to the cloud service in form of public key encryption \cite{naehrig2011can}. By doing this, they can control the access of data and perform an encrypted search on the data. Under this also, there is the ability of different monitoring devices to stream data that is encrypted. An example of this is the blood sugar level or the heart rate. There is the computation of the statistical functions by the clouds service on the data. Additionally, there is the determination of the risks and the sending of alerts to the patients and doctors. The computation of functions on the encrypted data is performed with homomorphic encryption \cite{naehrig2011can}. It is important to note that most of the Cryptosystems contain the homomorphic properties. This includes Elgamal and RSA which only offer multiplicative or additive homomorphism \cite{naehrig2011can}.\\\\
+Another application of homomorphic encryption is in the mobile agents’ protection. A homomorphic scheme that is on a special non-abelian group, causes a cryptosystem that is algebraically homomorphic on the finite filed F2\cite{sen2013homomorphic}. Cryptosystem has the possibility to encrypt the entire program so that it becomes executable since all the conventional architectures of the computer depend on binary strings\cite{sen2013homomorphic}. Therefore from this, it could be utilized in the protection of mobile agents by encryption from malicious hosts. There are two ways in the protection of mobile agents. One of them is using encrypted functions in computation and the other is the use of encrypted data in computing. Using the encrypted function in computing is seen as a special scenario of mobile agents’ protection. In this scenario, there is an assessment of a secret function publicly ensuring that the function is secretive. The privacy is ensured through the utilization of the homomorphic cryptosystems. Considering the other way which is the use of encrypted data, the homomorphic schemes work on encrypted data in order to execute publicly while at the same time ensuring privacy. The way in which this is done is by first off encrypting the data and then an exploitation of the homomorphic property is done so as to execute with encrypted data.\\\\
+Multiparty computation is the other application of homomorphic encryption. In this scheme, there is the interest of computation of a common public function on the inputs while still maintaining the privacy of their individual inputs \cite{sen2013homomorphic}. The problem, in this case, belongs to the computing area with encrypted data. In the protocols of multiparty computations, there is a set of $n<=2$ while in the computation with encrypted data there is $n=2$\cite{sen2013homomorphic}. Additionally, the protocols of multiparty computation have their functions publicly known before computation while in encrypted data computation scenario there is the private input of a single party.
+The other homomorphic scheme is the secret sharing scheme. In this scheme, there is sharing of a secret between parties ensuring no individual party can reconstruct the secret using the information available. Conversely, the cooperation of some of the parties may lead to the rebuilding of the secret \cite{sen2013homomorphic}. Under this scenario, the homomorphic property states that shares of the secret composition are equal to the composition of secrets shares. Multiparty schemes and secret sharing schemes are instances of threshold schemes \cite{sen2013homomorphic}. \\\\
+There is implementation of threshold schemes using the techniques of homomorphic encryption as a zero-knowledge proof is a cryptographic protocol primitive that is essential. It serves as an instance of homomorphic cryptosystems’ theoretical application. There is the utilization of zero-knowledge proofs in proving some private information knowledge. An example is consideration of the scenario whereby a user is required to prove his identity to a host by use of private password and account. In this case, there is the need for the user to maintain the privacy of their information during the protocol operation. The use of zero-knowledge ensures that there is communication by the protocol the knowledge that was intended and no additional knowledge \cite{sen2013homomorphic}.
+Oblivious transfer can be said to be cryptographic primitive that is interesting. There is sending off a bit to the second party by the first party in an oblivious transfer protocol that is two-party 1 out of 2.This occurs in such a way that there is receiving of the bit by the second party with a ½ probability without the knowledge of delivery by the first party \cite{sen2013homomorphic}.Digital fingerprinting and watermarking schemes are entrenched information that is added to the digital data. \\\\
+There use of the homomorphic property in the addition of a mark to the initially encrypted data. Watermarks are helpful in ensuring that the work is not stolen through identification of the original owner. Under the fingerprinting schemes, there is the identification of the buyer to make sure the data is not distributed illegally \cite{sen2013homomorphic}.
+Lottery protocols involve cryptographic lottery whereby the pointing number to the winning ticket is supposed to be randomly selected by the participants. The homomorphic scheme is used in this case in the following way: Every player selects a random number and encrypts it(\cite{sen2013homomorphic}. By use of the homomorphic property, there is the computation of the encryption of the random values sum. The addition of the threshold decryption scheme and thus results to the needed functionality.
+\newpage
+There is also the commitment scheme that is a cryptographic primitive that is essential. A commitment is made by the player in this scheme. The player is able to select a value out of a set and the choice is committed permanently. The selection is made private although later on is made public. There is an efficient implementation of commitment schemes utilizing homomorphic property \cite{sen2013homomorphic}.
+There are security issues when it comes to the aggregation of data in wireless sensor networks. The use of the WSNs technique which at the intermediate nodes it brings together partial results minimizes the communication overhead. \\\\
+Utilization of this technique is the cause of security and privacy concerns. For instance in areas such as military surveillance, the private data sensitivity is high and therefore the conduction of aggregation should be in a privacy maintaining way.The aggregator has to be barred from seeing the sensitive data. The schemes, in this case, are not capable of performing aggregation function that is multiplicative. The homomorphic encryption scheme can be utilized in the protecting privacy during the computation of arbitrary aggregation in a wireless sensor network \cite{sen2013homomorphic}.
+
+\section{Related work}
+This section gives a brief overview of the existing implementations of a fully homomorphic encryption schemes.
+
+\subsection{Gentry's Fully Homomorphic Encryption Scheme}

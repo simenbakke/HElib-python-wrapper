@@ -6,4 +6,4 @@
 In this chapter we will display the results of the tasks outlined in the approach section. In order to export the HElib library and make a well structured project we will first look at how HElib is designed. This is important as we want the exported library have the same structure as the HElib library.
 
 \section{HElib design}
-The HElib library consists of four layers where the bottom layer are 
+The HElib library consists of four layers where the bottom layer contains modules for implementing mathematical structures and other various utilities\cite{halevi2013design}. The second layer implements the Double-CRT representation of polynomials, the third layer implements the cryptosystem itself, and the top layer provides the interfaces for using the cryptosystem to operate on arrays of plaintext values. The two bottom layers are though of as the "math layers", and the two top layers are thought of as the "crypto layers". 

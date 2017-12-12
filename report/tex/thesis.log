@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.11.19)  10 DEC 2017 16:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.11.19)  12 DEC 2017 22:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1281,14 +1281,14 @@ LaTeX Info: Redefining \nameref on input line 5.
 \openout3 = `thesis.out'.
 
 
-<../fig/frontpage.pdf, id=104, 597.23125pt x 845.1575pt>
+<../fig/frontpage.pdf, id=112, 597.23125pt x 845.1575pt>
 File: ../fig/frontpage.pdf Graphic file (type pdf)
 
 <use ../fig/frontpage.pdf>
 Package pdftex.def Info: ../fig/frontpage.pdf used on input line 7.
 (pdftex.def)             Requested size: 597.22978pt x 845.15544pt.
 
-<../fig/frontpage.pdf, id=106, page=1, 597.23125pt x 845.1575pt>
+<../fig/frontpage.pdf, id=114, page=1, 597.23125pt x 845.1575pt>
 File: ../fig/frontpage.pdf Graphic file (type pdf)
 
 <use ../fig/frontpage.pdf, page 1>
@@ -1442,10 +1442,49 @@ If that doesn't work, type  X <return>  to quit.
 
  (./background.tex
 Chapter 2.
-LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 7.83997pt on input line 11.
-LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 5.87997pt on input line 11.
+! Missing delimiter (. inserted).
+<to be read again> 
+                   \right 
+l.10 ...i \leftarrow \pi _{i}^{e}mod N\left \right
+                                                   \}$, one is able to compu...
+I was expecting to see something like `(' or `\{' or
+`\}' here. If you typed, e.g., `{' instead of `\{', you
+should probably delete the `{' by typing `1' now, so that
+braces don't get unbalanced. Otherwise just proceed.
+Acceptable delimiters are characters whose \delcode is
+nonnegative, or you can use `\delimiter <delimiter code>'.
+
+! Missing \right. inserted.
+<inserted text> 
+                \right .
+l.10 ...eftarrow \pi _{i}^{e}mod N\left \right \}$
+                                                  , one is able to compute $...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--15
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--15
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--15
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--15
+
+ []
+
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1454,63 +1493,211 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
+[4]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 19.
+
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 14.11192pt on input line 20.
+(Font)              scaled to size 10.73094pt on input line 21.
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 14.11192pt on input line 20.
+(Font)              scaled to size 10.73094pt on input line 21.
 
-<../fig/cnn_conv.png, id=243, 636.3775pt x 427.5975pt>
-File: ../fig/cnn_conv.png Graphic file (type png)
+Underfull \hbox (badness 10000) in paragraph at lines 34--37
 
-<use ../fig/cnn_conv.png>
-Package pdftex.def Info: ../fig/cnn_conv.png used on input line 25.
-(pdftex.def)             Requested size: 216.81pt x 145.67482pt.
-LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 10.73094pt on input line 26.
-LaTeX Font Info:    Font shape `T1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 10.73094pt on input line 26.
- <../fig/cat.jpg, id=245, 1387.584pt x 1040.688pt>
-File: ../fig/cat.jpg Graphic file (type jpg)
+ []
 
-<use ../fig/cat.jpg>
-Package pdftex.def Info: ../fig/cat.jpg used on input line 39.
-(pdftex.def)             Requested size: 102.47011pt x 76.84137pt.
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 38--41
 
-<../fig/cat_localization.jpg, id=246, 3468.96pt x 2601.72pt>
-File: ../fig/cat_localization.jpg Graphic file (type jpg)
-
-<use ../fig/cat_localization.jpg>
-Package pdftex.def Info: ../fig/cat_localization.jpg used on input line 47.
-(pdftex.def)             Requested size: 102.47011pt x 76.81755pt.
-
-<../fig/cat_dog_detection.jpg, id=247, 1188.44pt x 891.33pt>
-File: ../fig/cat_dog_detection.jpg Graphic file (type jpg)
-
-<use ../fig/cat_dog_detection.jpg>
-Package pdftex.def Info: ../fig/cat_dog_detection.jpg used on input line 55.
-(pdftex.def)             Requested size: 102.47011pt x 76.84329pt.
-
-<../fig/cat_dog_segmentation.jpg, id=248, 1188.44pt x 891.33pt>
-File: ../fig/cat_dog_segmentation.jpg Graphic file (type jpg)
-
-<use ../fig/cat_dog_segmentation.jpg>
-Package pdftex.def Info: ../fig/cat_dog_segmentation.jpg used on input line 63.
-
-(pdftex.def)             Requested size: 102.47011pt x 76.84329pt.
+ []
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+Underfull \hbox (badness 10000) in paragraph at lines 38--41
 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--41
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--41
+
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6]
+Underfull \hbox (badness 10000) in paragraph at lines 43--48
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 43--48
+
+ []
+
+[7]
+! Undefined control sequence.
+<recently read> \mathbb 
+                        
+l.51 ...over polynomial rings of the form $\mathbb
+                                                  {A} = \mathbb{Z}\left [ X ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.51 ...al rings of the form $\mathbb{A} = \mathbb
+                                                  {Z}\left [ X \right ]/\phi...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \mathbb 
+                        
+l.51 ...aintext space is usually the ring $\mathbb
+                                                  {A}_{2}=\mathbb{A}/2\mathb...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.51 ...s usually the ring $\mathbb{A}_{2}=\mathbb
+                                                  {A}/2\mathbb{A}$, which is...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.51 ...e ring $\mathbb{A}_{2}=\mathbb{A}/2\mathbb
+                                                  {A}$, which is namely bina...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \mathbb 
+                        
+l.51 ...d'' so a polynomial arithmetic in $\mathbb
+                                                  {A}_{2}$ translates to ent...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \mathbb 
+                        
+l.51 ...xt space consists of vectors over $\mathbb
+                                                  {A}_{q} = \mathbb{A}/q\mat...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.51 ... of vectors over $\mathbb{A}_{q} = \mathbb
+                                                  {A}/q\mathbb{A}$ where q i...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.51 ...over $\mathbb{A}_{q} = \mathbb{A}/q\mathbb
+                                                  {A}$ where q is an odd mod...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.51 ...ymore, we get the ciphertexts over \mathbb
+                                                  {A}_{q0}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.51 ...e, we get the ciphertexts over \mathbb{A}_
+                                                  {q0}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.52 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+[8]
 LaTeX Font Info:    Try loading font information for TS1+XCharter-TLF on input 
-line 72.
-(/usr/share/texlive/texmf-dist/tex/latex/xcharter/TS1XCharter-TLF.fd
+line 62.
+ (/usr/share/texlive/texmf-dist/tex/latex/xcharter/TS1XCharter-TLF.fd
 File: TS1XCharter-TLF.fd 2013/10/27 (autoinst) Font definitions for TS1/XCharte
 r-TLF.
 )
 LaTeX Font Info:    Font shape `TS1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 11.75995pt on input line 72.
- [4 <../fig/cnn_conv.png>]) [5 <../fig/cat.jpg> <../fig/cat_localization.jpg> <
-../fig/cat_dog_detection.jpg> <../fig/cat_dog_segmentation.jpg>]
+(Font)              scaled to size 11.75995pt on input line 62.
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--65
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--65
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--65
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--65
+
+ []
+
+
+Underfull \vbox (badness 1924) has occurred while \output is active []
+
+ [9]
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 66--69
+
+ []
+
+LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
+(Font)              scaled to size 14.11192pt on input line 73.
+LaTeX Font Info:    Font shape `T1/XCharter-TLF/b/n' will be
+(Font)              scaled to size 14.11192pt on input line 73.
+) [11]
 \openout2 = `approach.aux'.
 
  (./approach.tex
@@ -1548,7 +1735,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 21--23
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [6
+ [12
 
 
 
@@ -1562,7 +1749,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 24--27
 
  []
 
-[7] [8]
+[13] [14]
 Underfull \hbox (badness 10000) in paragraph at lines 44--48
 
  []
@@ -1587,7 +1774,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 44--48
 
  []
 
-[9]
+
+Overfull \hbox (0.70999pt too wide) in paragraph at lines 50--51
+\T1/XCharter-TLF/m/n/12 cryp-tosys-tem (BGV) [[]], Brak-er-ski's scale-invarian
+t cryp-tosys-tem [[]], The NTRU-
+ []
+
+
+Overfull \hbox (1.53583pt too wide) in paragraph at lines 52--53
+\T1/XCharter-TLF/m/n/12 Regev's LWE cryp-tosys-tem [[]] with the boot-strap-pin
+g tech-niques of Alperin-Sheriff
+ []
+
+[15]
 Underfull \hbox (badness 10000) in paragraph at lines 56--59
 
  []
@@ -1625,13 +1824,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 60--65
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [10]
-[11]
+ [16]
+[17]
 Underfull \hbox (badness 10000) in paragraph at lines 76--78
 
  []
 
-[12]
+[18]
 Underfull \hbox (badness 10000) in paragraph at lines 85--88
 
  []
@@ -1641,7 +1840,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 85--88
 
  []
 
-[13])
+[19])
 Underfull \hbox (badness 10000) in paragraph at lines 92--57
 
  []
@@ -1666,21 +1865,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 92--57
 
  []
 
-[14]
+[20]
 \openout2 = `design.aux'.
 
- (./design.tex [15
+ (./design.tex [21
 
 
 
 ]
 Chapter 4.
-) [16]
+) [22]
 \openout2 = `implementation.aux'.
 
  (./implementation.tex
 Chapter 5.
-) [17
+) [23
 
 
 
@@ -1689,51 +1888,69 @@ Chapter 5.
 
  (./discussion.tex
 Chapter 6.
-) [18
+) [24
 
 
 
 ]
 \openout2 = `conclusion.aux'.
 
- (./conclusion.tex [19
+ (./conclusion.tex [25
 
 
 
 ]
 Chapter 7.
-) [20] (./thesis.bbl
+) [26] (./thesis.bbl
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/it' will be
-(Font)              scaled to size 11.75995pt on input line 6.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 11.
- (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-[21
+(Font)              scaled to size 11.75995pt on input line 4.
+
+Underfull \hbox (badness 2547) in paragraph at lines 4--6
+[]\T1/XCharter-TLF/m/n/12 M. Rouse, ``What is ho-mo-mor-phic en-cryp-tion?,'' \
+T1/XCharter-TLF/m/it/12 Re-trived from Wired:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--6
+\T1/XCharter-TLF/m/it/12 https://www.wired.com/2014/11/hacker-lexicon-homomorph
+ic-encryption/\T1/XCharter-TLF/m/n/12 ,
+ []
+
+
+Underfull \hbox (badness 1990) in paragraph at lines 23--25
+[]\T1/XCharter-TLF/m/n/12 C. Gen-try, ``Fully ho-mo-mor-phic en-cryp-tion us-in
+g ideal lat-tice,'' \T1/XCharter-TLF/m/it/12 STOC\T1/XCharter-TLF/m/n/12 ,
+ []
+
+[27
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 63--65
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 52.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+Underfull \hbox (badness 10000) in paragraph at lines 98--100
 []\T1/XCharter-TLF/m/n/12 A. Ibar-rondo, ``Pyfhel,'' \T1/XCharter-TLF/m/it/12 R
 e-trieved from Pyfhel:
  []
 
-) [22]
+) [28]
 \openout2 = `appendix.aux'.
 
- (./appendix.tex [23
+ (./appendix.tex [29
 
 
 ]
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
 (Font)              scaled to size 24.3823pt on input line 3.
- [24
+ [30
 
-] [25
+] [31
 
 ]
 Appendix A.
-) [26] [27
+) [32] [33
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 71.
@@ -1743,36 +1960,33 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 71.
 (./implementation.aux) (./discussion.aux) (./conclusion.aux) (./appendix.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 71.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 71.
-
-
-Package rerunfilecheck Warning: File `thesis.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `thesis.out':
-(rerunfilecheck)             Before: C31DDD0CD469CE6BA587A69C3717D79F;1323
-(rerunfilecheck)             After:  2CA289F3C31F0E6B0AEFDF6AFB12E2DC;1313.
+Package rerunfilecheck Info: File `thesis.out' has not changed.
+(rerunfilecheck)             Checksum: 2D7B191534703370F1A1297B035346BC;1450.
  ) 
 Here is how much of TeX's memory you used:
- 13198 strings out of 494945
- 193281 string characters out of 6181031
- 296625 words of memory out of 5000000
- 16058 multiletter control sequences out of 15000+600000
- 92785 words of font info for 52 fonts, out of 8000000 for 9000
+ 13176 strings out of 494945
+ 192550 string characters out of 6181031
+ 301225 words of memory out of 5000000
+ 16031 multiletter control sequences out of 15000+600000
+ 81329 words of font info for 50 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 55i,18n,92p,1317b,522s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,18n,92p,1453b,522s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/simen/.texlive2016/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600
 pk>{/usr/share/texlive/texmf-dist/fonts/enc/dvips/xcharter/xch_tuu2ww.enc}{/usr
 /share/texlive/texmf-dist/fonts/enc/dvips/xcharter/xch_jfcsri.enc}</usr/share/t
 exlive/texmf-dist/fonts/type1/public/xcharter/XCharter-Bold.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/xcharter/XCharter-Italic.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/xcharter/XCharter-Roman.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-Output written on thesis.pdf (38 pages, 14402704 bytes).
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmsy10.pfb>
+Output written on thesis.pdf (44 pages, 1454937 bytes).
 PDF statistics:
- 472 PDF objects out of 1000 (max. 8388607)
- 376 compressed objects within 4 object streams
- 93 named destinations out of 1000 (max. 500000)
- 241 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 549 PDF objects out of 1000 (max. 8388607)
+ 456 compressed objects within 5 object streams
+ 105 named destinations out of 1000 (max. 500000)
+ 232 words of extra memory for PDF output out of 10000 (max. 10000000)
 

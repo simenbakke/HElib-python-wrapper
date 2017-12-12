@@ -1,15 +1,50 @@
 \begin{thebibliography}{10}
 
-\bibitem{Esteva2017}
-A.~Esteva, B.~Kuprel, R.~A. Novoa, J.~Ko, S.~M. Swetter, H.~M. Blau, and
-  S.~Thrun, ``Dermatologist-level classification of skin cancer with deep
-  neural networks,'' {\em Nature}, vol.~542, pp.~115--118, Feb 2017.
-\newblock Letter.
+\bibitem{wired2014}
+M.~Rouse, ``What is homomorphic encryption?,'' {\em Retrived from Wired:
+  https://www.wired.com/2014/11/hacker-lexicon-homomorphic-encryption/}, 2011.
 
-\bibitem{Homesite2017}
-``Homesite quote conversion.''
-  \url{https://www.kaggle.com/c/homesite-quote-conversion}.
-\newblock Accessed: 2017-30-05.
+\bibitem{tech2011}
+A.~Greenberg, ``What is homomorphic encryption?,'' {\em Retrived from
+  Techtarget:
+  http://searchsecurity.techtarget.com/definition/homomorphic-encryption},
+  2014.
+
+\bibitem{brakerski2011fully}
+Z.~Brakerski and V.~Vaikuntanathan, ``Fully homomorphic encryption from
+  ring-lwe and security for key dependent messages,'' in {\em Annual cryptology
+  conference}, pp.~505--524, Springer, 2011.
+
+\bibitem{rivest1978}
+M.~D. R.~Rivest, L.~Adleman, ``On data banks and privacy homomorphisms,'' {\em
+  Foundations of Secure Computation}, pp.~169--177, 1978.
+
+\bibitem{gen09b}
+C.~Gentry, ``Fully homomorphic encryption using ideal lattice,'' {\em STOC},
+  pp.~169--178, 2009.
+
+\bibitem{gen10}
+C.~Gentry, ``Toward basing fully homomorphic encryption on worst-case
+  hardness,'' {\em CRYPTO}, pp.~116--137, 2010.
+
+\bibitem{green2012}
+M.~Green, ``A very casual introduction to fully homomorphic encryption,'' {\em
+  Retrieved from
+  https://blog.cryptographyengineering.com/2012/01/02/very-casual-introduction-to-fully/},
+  2012.
+
+\bibitem{sen2013homomorphic}
+J.~Sen, ``Homomorphic encryption: theory \& applications,'' {\em arXiv preprint
+  arXiv:1305.5886}, 2013.
+
+\bibitem{halevi2013design}
+S.~Halevi and V.~Shoup, ``Design and implementation of a homomorphic-encryption
+  library,'' {\em IBM Research (Manuscript)}, vol.~6, pp.~12--15, 2013.
+
+\bibitem{naehrig2011can}
+M.~Naehrig, K.~Lauter, and V.~Vaikuntanathan, ``Can homomorphic encryption be
+  practical?,'' in {\em Proceedings of the 3rd ACM workshop on Cloud computing
+  security workshop}, pp.~113--124, ACM, 2011.
 
 \bibitem{cryptoeprint:2011:277}
 Z.~Brakerski, C.~Gentry, and V.~Vaikuntanathan, ``Fully homomorphic encryption
