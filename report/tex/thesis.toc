@@ -10,31 +10,62 @@
 \contentsline {section}{\numberline {2.3}HElib}{8}{section.2.3}
 \contentsline {section}{\numberline {2.4}Application of Homomorphic}{9}{section.2.4}
 \contentsline {section}{\numberline {2.5}Related work}{11}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}Gentry's Fully Homomorphic Encryption Scheme}{11}{subsection.2.5.1}
-\contentsline {chapter}{\numberline {3}Approach}{12}{chapter.3}
-\contentsline {section}{\numberline {3.1}Objectives}{12}{section.3.1}
-\contentsline {section}{\numberline {3.2}Design Stage}{13}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}C++ wrapper for Python}{13}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Create the API}{13}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Find a suitable model for testing the API}{14}{subsection.3.2.3}
-\contentsline {section}{\numberline {3.3}Implementation stage}{15}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Choose a Fully Homomorphic Scheme implementation}{15}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Wrap the code to Python}{16}{subsection.3.3.2}
-\contentsline {subsubsection}{C-extenstions}{17}{subsubsection*.7}
-\contentsline {subsubsection}{SWIG}{17}{subsubsection*.8}
-\contentsline {subsubsection}{Ctypes}{18}{subsubsection*.9}
-\contentsline {subsubsection}{Boost}{18}{subsubsection*.10}
-\contentsline {subsection}{\numberline {3.3.3}Create a structured Python API}{19}{subsection.3.3.3}
-\contentsline {subsection}{\numberline {3.3.4}Create tests to measure the performance}{20}{subsection.3.3.4}
-\contentsline {chapter}{\numberline {4}Design}{22}{chapter.4}
-\contentsline {section}{\numberline {4.1}HElib design}{22}{section.4.1}
-\contentsline {chapter}{\numberline {5}Implementation}{23}{chapter.5}
-\contentsline {section}{\numberline {5.1}Wrapping the code}{23}{section.5.1}
-\contentsline {chapter}{\numberline {6}Discussion}{24}{chapter.6}
-\contentsline {section}{\numberline {6.1}asdf}{24}{section.6.1}
-\contentsline {chapter}{\numberline {7}Conclusion}{26}{chapter.7}
-\contentsline {section}{\numberline {7.1}Future Work}{26}{section.7.1}
-\contentsline {chapter}{Bibliography}{27}{chapter*.11}
-\contentsline {chapter}{Appendices}{30}{section*.12}
+\contentsline {subsection}{\numberline {2.5.1}Implementation of Gentry's Fully Homomorphic Encryption Scheme}{11}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}FHEW library}{12}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}TFHE library}{12}{subsection.2.5.3}
+\contentsline {chapter}{\numberline {3}Approach}{13}{chapter.3}
+\contentsline {section}{\numberline {3.1}Objectives}{13}{section.3.1}
+\contentsline {section}{\numberline {3.2}Design Stage}{14}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}C++ wrapper for Python}{14}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Create the API}{14}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Find a suitable model for testing the API}{15}{subsection.3.2.3}
+\contentsline {section}{\numberline {3.3}Implementation stage}{16}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Choose a Fully Homomorphic Scheme implementation}{16}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Wrap the code to Python}{17}{subsection.3.3.2}
+\contentsline {subsubsection}{C-extenstions}{18}{subsubsection*.7}
+\contentsline {subsubsection}{SWIG}{18}{subsubsection*.8}
+\contentsline {subsubsection}{Ctypes}{19}{subsubsection*.9}
+\contentsline {subsubsection}{Boost}{19}{subsubsection*.10}
+\contentsline {subsection}{\numberline {3.3.3}Create a structured Python API}{20}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}Create tests to measure the performance}{21}{subsection.3.3.4}
+\contentsline {chapter}{\numberline {4}Design}{23}{chapter.4}
+\contentsline {section}{\numberline {4.1}HElib design}{23}{section.4.1}
+\contentsline {paragraph}{Timing}{24}{paragraph*.11}
+\contentsline {paragraph}{Numbth}{24}{paragraph*.12}
+\contentsline {paragraph}{Bluestein}{24}{paragraph*.13}
+\contentsline {paragraph}{Cmodulus and CModulus}{24}{paragraph*.14}
+\contentsline {paragraph}{PAlgebra}{24}{paragraph*.15}
+\contentsline {paragraph}{PAlgebraMod}{24}{paragraph*.16}
+\contentsline {paragraph}{FHEcontext}{25}{paragraph*.17}
+\contentsline {paragraph}{DoubleCRT}{25}{paragraph*.18}
+\contentsline {paragraph}{Ctxt}{25}{paragraph*.19}
+\contentsline {paragraph}{EncryptedArray}{25}{paragraph*.20}
+\contentsline {section}{\numberline {4.2}HElib Python design}{26}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Exported functionality}{27}{subsection.4.2.1}
+\contentsline {subsubsection}{Ctxt}{27}{subsubsection*.22}
+\contentsline {subsubsection}{EncryptedArray}{27}{subsubsection*.23}
+\contentsline {subsubsection}{FHE}{28}{subsubsection*.24}
+\contentsline {subsubsection}{FHEContext}{28}{subsubsection*.25}
+\contentsline {subsubsection}{PAlgebra}{28}{subsubsection*.26}
+\contentsline {subsubsection}{Python vectors}{29}{subsubsection*.27}
+\contentsline {subsubsection}{HElib Python mainfile}{29}{subsubsection*.28}
+\contentsline {chapter}{\numberline {5}Implementation}{30}{chapter.5}
+\contentsline {section}{\numberline {5.1}Building the HElibrary}{30}{section.5.1}
+\contentsline {section}{\numberline {5.2}Exported functionality}{30}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Classes}{31}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Overloaded functions}{31}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Vectors}{32}{subsection.5.2.3}
+\contentsline {subsection}{\numberline {5.2.4}Mainfile}{33}{subsection.5.2.4}
+\contentsline {section}{\numberline {5.3}Test cases}{33}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Test case one}{33}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Test case two}{34}{subsection.5.3.2}
+\contentsline {chapter}{\numberline {6}Measurement, analysis and comparison}{35}{chapter.6}
+\contentsline {section}{\numberline {6.1}testing}{35}{section.6.1}
+\contentsline {chapter}{\numberline {7}Discussion}{36}{chapter.7}
+\contentsline {section}{\numberline {7.1}asdf}{36}{section.7.1}
+\contentsline {chapter}{\numberline {8}Conclusion}{38}{chapter.8}
+\contentsline {section}{\numberline {8.1}Future Work}{38}{section.8.1}
+\contentsline {chapter}{Bibliography}{39}{chapter*.29}
+\contentsline {chapter}{Appendices}{43}{section*.30}
 \setcounter {tocdepth}{0}
-\contentsline {chapter}{\numberline {A}tttt}{32}{Appendix.a.A}
+\contentsline {chapter}{\numberline {A}tttt}{45}{Appendix.a.A}

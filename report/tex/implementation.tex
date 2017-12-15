@@ -1,3 +1,43 @@
 \chapter{Implementation}
 
-\section{Wrapping the code}
+\section{Building the HElibrary}
+
+
+The original HElib library compiles the library into a private library called FHE.a. Having a private library made it troublesome when trying to export the functions with Boost Python which requires to have a link to all original files during the compilation. It should work in theory to compile the Boost python code with a link to a shared library, but an easier method was to compile the HElib library as a shared library. By compiling the HElib library as a shared library one only have to provide the link “-lfhe” during the compilation of the Boost python code to let the compiler know where the original code is located. During the compilation of the HElib library the files are first compiled as intermediate files which are then linked to create the shared library. The makefile used to create the shared library is borrowed from (link)
+
+
+\section{Exported functionality}
+
+Each of the files which are created with the same functionality and with a name corresponding to the original files have the exported functionality located in one function which corresponds with the filename. In this function all the classes and functions which are exported to the python library are located. The function is declared in a header file and is called within the Boost python module in the mainfile.
+
+\subsection{Classes}
+
+The exported classes are defined by class\_<name\_of\_class>(“python class name”), where the name\_of\_class is the original name of the class in C++ and “python class name” is the name of the class when exported. If the class have a standard constructor, there is no need to define this as it will initialize automatically. If the constructor is not standard however, it has to be initialized. For example, the EncryptedArray class does not have a standard constructor. In fact it has two constructors, one which takes a FHEcontext &, ZZX&, and one which takes FHEcontext&, PAlgebraMod. Both of the constructors have been defined within the class using the .def(init) function. Its important to note that since the class does not have a default constructor we are telling the compiler to not initialize the class by passing in the no\_init argument when exporting the class.
+
+Some of the classes exported are derived from other classes. To export a class which have a base class we have to tell the compiler about the base class during the export of the derived class. This is done by passing in the bases<”class”> argument when exporting the class. To export a derived class we also have to export the base class. When declaring the variables in a function we use the .addproperty(“python name”, &class\_name::variable) where “python name” is the name the variable will recieve in the shared library in python, class\_name is the class name of the C++ class and variable is the name of the variable in C++. Functions within a class is exported using the .def(“python name”, &class\_name::function\_name) where the input is the same as when exporting variables and the function name is the name of the function is the original library.
+
+\subsection{Overloaded functions}
+In C++ there is a concept where one can have many functions with the same name, but with different inputs. This is done during the compilation of the code when the compilator uses a technique called “name mangling”. During the compilation of C++ the functions are given a unique id/name which enables the compiler to differientiate between the overloaded functions. Python does not compile the code, but uses an interpreter which mean this concept does not work in python.
+
+To handle this when exporting overloaded functions in Boost python, each of the overloaded functions are given a unique name when exported. For example, the EncryptedArray class consists of many overloaded functions. One of these are the encrypt function, which are repeated three times with different input parameters. When exporting the encrypt functions we first declare the function and bind it to a unique name.
+Void (EncryptedArray::*e1)(Ctxt&, const FHEPubKey&, const NewPlaintextArray&) const = &EncryptedArray::encrypt;
+
+The first parameter (EncryptedArray::*e1), “EncryptedArray” refers to the name of the class in C++ while “e1” is the temporary name which are later used when exporting the function. The (Ctxt&, const FHEPubKey&, const NewPlaintextArray&) is the input paramteres to the overloaded function we are exporting and the &EncryptedArray::encrypt; is the name of the class and the name of the function. The function are now declared with the unique identifier “e1”, with the input parameters and the name of the overloaded function. To export the function we use the .def(“python\_name”, unique identifier) method, where the python name will be the new name of the function in the shared library and the unique identifier is “e1” in this example.
+
+Another concept of the overloaded functions is when a function have a standard input parameter. For example void Test(int a, int b, in c=2), where the input c equals to 2 if the nothing is passed in the c argument when the function is called. Boost python handles this with the use of BOOST\_PYTHON\_FUNCTION\_OVERLOADS (new\_name\_of\_function, name\_of\_function, min input, max input). The \newline “new\_name\_of\_function” is a temporary name which is used later when exporting the function. “Name\_of\_function” is the name of the function in C++ and min input is the minimum number of input arguments that can be passed to the function, this means all the arguments which have to be passed in to make the function work properly. The max input argument is the maximum number of arguments which can be passed in the function including the overloaded function arguments.
+
+
+\subsection{Vectors}
+Vectors is another concept which are not familiar in python. In order to handle vectors in python a converter has been created. In the exported library there are two different vectors being used. This is a standard long vector and an NTL vector, NTL is the underlying mathematical library. To create an converter for the vectors the class method is used. Example: class\_<std::vector<long>>(“pyvector”), which is the standard long vector and “pyvector” is the name of the vector in python. To export the vector as an actual vector and not a class we are defining the vector within the class using the vector\_indexing\_suite parameter which creates an indexable container. It emulates a python container which enables us to use the vector as a list with some limited functionality in python.
+
+\subsection{Mainfile}
+
+In the main file we find the actual Boost python module. Within this module all the exported functions from the different files are called. In this file some helper functions has also been implemented. This includes functions to get the product/adding two ciphertexts. The operator in the Ctxt class have not been exported, which means in order to modify the ciphertexts these helper functions have been created and exported. In the mainfile we also find a function which are used to compare two plaintext. It takes an EncryptedArray, secret key, plaintext and a ciphertext as an input. The ciphertext are decrypted using the secrey key and compared to the plaintext. This function is used extensively when testing as the operation(s) are performed on a ciphertext and a plaintext which are later compare to make sure the result is correct.
+
+\section{Test cases}
+
+\subsection{Test case one}
+The first test case is made with the intention to measure the difference in performance between the exported library and the original HElib library. In the test case four plaintexts are made which are filled with random data. Four ciphertexts are created by encrypting the plaintext using the encrypt function in the EncryptedArray module.  Note that the plaintexts are not overwritten or modified as these are later used to compare the results when the ciphertext are decrypted to make sure the result of the operations are correct. Within are loop the different arithmetic operations are performed on the different ciphertexts and the plaintexts, which includes adding the ciphertext to a random constant, multiply two ciphertexts and multiply by a random constant. The operation is done on the ciphertext and the corresponding plaintext. Once the operation is done the ciphertext is decrypted and compared to the plaintext.
+
+\newpage
+\subsection{Test case two}

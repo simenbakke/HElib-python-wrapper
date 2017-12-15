@@ -20,7 +20,7 @@ M.~D. R.~Rivest, L.~Adleman, ``On data banks and privacy homomorphisms,'' {\em
   Foundations of Secure Computation}, pp.~169--177, 1978.
 
 \bibitem{gen09b}
-C.~Gentry, ``Fully homomorphic encryption using ideal lattice,'' {\em STOC},
+C.~Gentry, ``Fully homomorphic encryption using ideal lattices,'' {\em STOC},
   pp.~169--178, 2009.
 
 \bibitem{gen10}
@@ -45,6 +45,28 @@ S.~Halevi and V.~Shoup, ``Design and implementation of a homomorphic-encryption
 M.~Naehrig, K.~Lauter, and V.~Vaikuntanathan, ``Can homomorphic encryption be
   practical?,'' in {\em Proceedings of the 3rd ACM workshop on Cloud computing
   security workshop}, pp.~113--124, ACM, 2011.
+
+\bibitem{smartver}
+N.~P. Smart and F.~Vercauteren., ``Fully homomorphic encryption with relatively
+  small key and ciphertext size,'' {\em Public Key Cryptography - PKC},
+  vol.~6056 of Lecture Notes in Computer Science, pp.~420--443, 2010.
+
+\bibitem{cryptoeprint:2014:094}
+J.~Alperin-Sheriff and C.~Peikert, ``Faster bootstrapping with polynomial
+  error.'' Cryptology ePrint Archive, Report 2014/094, 2014.
+\newblock \url{https://eprint.iacr.org/2014/094}.
+
+\bibitem{ducas2015fhew}
+L.~Ducas and D.~Micciancio, ``Fhew: Bootstrapping homomorphic encryption in
+  less than a second.,'' {\em EUROCRYPT (1)}, vol.~9056, pp.~617--640, 2015.
+
+\bibitem{chillotti2016faster}
+I.~Chillotti, N.~Gama, M.~Georgieva, and M.~Izabach{\`e}ne, ``Faster fully
+  homomorphic encryption: Bootstrapping in less than 0.1 seconds,'' in {\em
+  Advances in Cryptology--ASIACRYPT 2016: 22nd International Conference on the
+  Theory and Application of Cryptology and Information Security, Hanoi,
+  Vietnam, December 4-8, 2016, Proceedings, Part I 22}, pp.~3--33, Springer,
+  2016.
 
 \bibitem{cryptoeprint:2011:277}
 Z.~Brakerski, C.~Gentry, and V.~Vaikuntanathan, ``Fully homomorphic encryption
@@ -72,18 +94,9 @@ C.~Gentry, A.~Sahai, and B.~Waters, ``Homomorphic encryption from learning with
 S.~Halevi and V.~Shoup, ``Helib,'' {\em Retrieved from HELib: https://github.
   com. shaih/HElib}, 2014.
 
-\bibitem{ducas2015fhew}
-L.~Ducas and D.~Micciancio, ``Fhew: Bootstrapping homomorphic encryption in
-  less than a second.,'' {\em EUROCRYPT (1)}, vol.~9056, pp.~617--640, 2015.
-
 \bibitem{regev2009lattices}
 O.~Regev, ``On lattices, learning with errors, random linear codes, and
   cryptography,'' {\em Journal of the ACM (JACM)}, vol.~56, no.~6, p.~34, 2009.
-
-\bibitem{cryptoeprint:2014:094}
-J.~Alperin-Sheriff and C.~Peikert, ``Faster bootstrapping with polynomial
-  error.'' Cryptology ePrint Archive, Report 2014/094, 2014.
-\newblock \url{https://eprint.iacr.org/2014/094}.
 
 \bibitem{chillotti2016tfhe}
 I.~Chillotti, N.~Gama, M.~Georgieva, and M.~Izabach{\`e}ne, ``Tfhe: Fast fully
@@ -97,5 +110,9 @@ D.~Abrahams, R.~W. Grosse-Kunstleve, and O.~Overloading, ``Building hybrid
 \bibitem{Pyfhelhelib}
 A.~Ibarrondo, ``Pyfhel,'' {\em Retrieved from Pyfhel:
   https://github.com/ibarrond/Pyfhel}, 2017.
+
+\bibitem{boost2017}
+D.~A. Joel~de Guzman, ``General techniques,'' {\em Retrived from Boost Python
+  docs: http://www.boost.org/doc/libs/1\_65\_1/libs}, 2017.
 
 \end{thebibliography}

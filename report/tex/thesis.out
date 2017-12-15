@@ -16,12 +16,17 @@
 \BOOKMARK [1][-]{section.3.3}{Implementation stage}{chapter.3}% 16
 \BOOKMARK [0][-]{chapter.4}{Design}{}% 17
 \BOOKMARK [1][-]{section.4.1}{HElib design}{chapter.4}% 18
-\BOOKMARK [0][-]{chapter.5}{Implementation}{}% 19
-\BOOKMARK [1][-]{section.5.1}{Wrapping the code}{chapter.5}% 20
-\BOOKMARK [0][-]{chapter.6}{Discussion}{}% 21
-\BOOKMARK [1][-]{section.6.1}{asdf}{chapter.6}% 22
-\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 23
-\BOOKMARK [1][-]{section.7.1}{Future Work}{chapter.7}% 24
-\BOOKMARK [0][-]{chapter*.11}{Bibliography}{}% 25
-\BOOKMARK [0][-]{section*.12}{Appendices}{}% 26
-\BOOKMARK [0][-]{Appendix.a.A}{tttt}{}% 27
+\BOOKMARK [1][-]{section.4.2}{HElib Python design}{chapter.4}% 19
+\BOOKMARK [0][-]{chapter.5}{Implementation}{}% 20
+\BOOKMARK [1][-]{section.5.1}{Building the HElibrary}{chapter.5}% 21
+\BOOKMARK [1][-]{section.5.2}{Exported functionality}{chapter.5}% 22
+\BOOKMARK [1][-]{section.5.3}{Test cases}{chapter.5}% 23
+\BOOKMARK [0][-]{chapter.6}{Measurement, analysis and comparison}{}% 24
+\BOOKMARK [1][-]{section.6.1}{testing}{chapter.6}% 25
+\BOOKMARK [0][-]{chapter.7}{Discussion}{}% 26
+\BOOKMARK [1][-]{section.7.1}{asdf}{chapter.7}% 27
+\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 28
+\BOOKMARK [1][-]{section.8.1}{Future Work}{chapter.8}% 29
+\BOOKMARK [0][-]{chapter*.29}{Bibliography}{}% 30
+\BOOKMARK [0][-]{section*.30}{Appendices}{}% 31
+\BOOKMARK [0][-]{Appendix.a.A}{tttt}{}% 32

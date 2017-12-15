@@ -3,7 +3,79 @@
 \afterpage{\blankpage}   % insert blank page
 
 \chapter{Design}
-In this chapter we will display the results of the tasks outlined in the approach section. In order to export the HElib library and make a well structured project we will first look at how HElib is designed. This is important as we want the exported library have the same structure as the HElib library.
+In this chapter we will display the results of the tasks outlined in the approach section. In order to export the HElib library and make a well structured project we will first look at how HElib is designed. This is important as we want the exported library have the same structure as the HElib library. As the HElib library consists of many modules, many of which we might not need to export to Python, we should look at the structure of the modules and what they contain to figure out which of the modules we need to export to make the Python API functional.
 
 \section{HElib design}
-The HElib library consists of four layers where the bottom layer contains modules for implementing mathematical structures and other various utilities\cite{halevi2013design}. The second layer implements the Double-CRT representation of polynomials, the third layer implements the cryptosystem itself, and the top layer provides the interfaces for using the cryptosystem to operate on arrays of plaintext values. The two bottom layers are though of as the "math layers", and the two top layers are thought of as the "crypto layers". 
+\begin{quotation} ``The HElib library consists of four layers where the bottom layer contains modules for implementing mathematical structures and other various utilities. The second layer implements the Double-CRT representation of polynomials, the third layer implements the cryptosystem itself, and the top layer provides the interfaces for using the cryptosystem to operate on arrays of plaintext values\cite{halevi2013design}. The two bottom layers are though of as the "math layers", and the two top layers are thought of as the "crypto layers" ''.\end{quotation}
+
+In the bottom layer we have the modules Numbth, timing, bluestein, PAlgebra, PAlgebraMod, Cmodulus, Indexset, and IndexMap. In the second layer we have FHEcontext, SingleCRT and DoubleCRT. In the third layer FHE, Ctxt and KeySwitching, and Encrypted Array in the top layer. To figure out which of these modules we need to export to Python in order to create a functional API, we have to take a look at what they do. Keep in mind that we only have to export the modules of which we have to call the functions directly.
+
+\newpage
+\paragraph{Timing}
+The timing module contains some functions for measuring the time that methods use to execute. This module allows us to have a timer per function, measuring the time for each function, which can be useful when testing the exported library, but it is not a necessity.
+
+\paragraph{Numbth}
+The numbth module consist of many different little utility functions including CRT-reconstruction of polynomials in coefficient representation, conversion functions between types, procedures to sample at random from various distributions\cite{halevi2013design}.
+
+\paragraph{Bluestein}
+``The bluestein module implements a non-power-of-two FFT over a prime fiels $\mathbb{Z}_{p}$, using the Bluestein FFT algorithm''\cite{halevi2013design} The module contains two functions which compute the length-n FFT of the coefficient-vector of x and put the result back in x.
+
+\paragraph{Cmodulus and CModulus}
+These are two classes which provides and interface layer for the FFT routines of bluestein relative to a single prime. They also keep the NTL "current modulus" for that prime
+
+\paragraph{PAlgebra}
+The PAlgebra class contains the structure of $(Z/mZ)* /(p)$ and the quotient group $\mathbb{Z}_{m}^{*}/\left \langle 2 \right \rangle$. In the implemented scenarios/tests the PAlgebra class is mainly used to get the factorization of $Phi_m(X) mod p^r$
+
+\paragraph{PAlgebraMod}
+The PAlgebraMod class implements the structure of the plaintext spaces, which is of the form  $\mathbb{A}_{p}{r} = \mathbb{A}/P^{r}\mathbb{A}$ for a small value of r\cite{halevi2013design}. The r value is typically 1 for ordinary homomorphic computation but are expected to be larger than 1 when used for bootstrapping. The plaintext slots are determined by a factorization and once this is done, an arbitrary factor is chosen which corresponds to the first input slot. The class provides functionality like encoding/decoding and storing of ``mask tables'' which is used by EncryptedArray to facilitate rotating slots of encrypting data.
+\newpage
+\paragraph{FHEcontext}
+The objects in the higher layers of the library are defined by some parameters, like a sequence of small primes that determine the modulus chain. The FHEcontext class is used to allow convenient access to these parameters and provides access methods and some utility functions. The FHEcontext also contains IndexSet object which are partitions used when generating the key-switching matrices in the public key and key-switching on ciphertext. It also contains some functions for chosing parameters and adding moduli to the chain. In the FHEcontext class we find the FindM(long k, long L, long c, long d, long s, long chosen\_m, bool verbose=false) a helper class which is used in all of the examples. This helper function is used to select the values for the parameter m, defining the m'th cyclotomic ring. The FHEcontext also implements the public and secret keys, and key-switching matricies.
+
+\paragraph{DoubleCRT}
+A DoubleCRT object is tied to a specific FHEcontext and is used to manipulate the polynomials in the Double-CRT representation. The FHEcontext must remain fixed, but the set of primes can change dynamically, so the matrix can add or remove rows as we go. These rows are kept as a dynamic IndexMap data member. The DoubleCRT objects supports the usual arithmetic operations like addition, multiplication, etc.
+
+\paragraph{Ctxt}
+The Ctxt module implements the ciphertext and the ciphertext arithmetic. The library deals with both ``canonical'' and ``non-canonical'' ciphertexts. This is supported by using ciphertexts which consists of an arbitrary-lengt vector of cipher-text parts, where each part is a polynomial with a ``handle'' that points to the secret key that should multiply this part at decryption\cite{halevi2013design}.
+
+\paragraph{EncryptedArray}
+The EncryptedArray class is used to present the plaintext values as either a linear array or as a multi-dimensional array. It also provides methods which can handle both encoding and homomorphic operations in one shot.
+
+\newpage
+
+\section{HElib Python design}
+The design of the HElib Python library is made purposely similar to the HElib library in C++. There are several reasons for this including having a structured and easily understood API, making it easier for anyone who is not familiar with the project to understand how is it structured. In Boost Python, when exporting a lot of classes the compile time can be substantial and the memory consumption can easily become high. This can be solved by splitting the class definitions over multiple files\cite{boost2017}.\\\\
+For each of the header files in the HElib library which contains functions or functionality used in the exported python library a corresponding file has been made which contains the functions and classes which are exported. All of the files with exported functions and classes have a corresponding header file which are used in order to call the functions in the main file, see figure below.
+
+\begin{figure}[h]
+\caption{Presentation of the HELib Python structure}
+\centering
+\includegraphics[width=0.65\textwidth]{../fig/HElibPython_Design.png}
+\end{figure}
+
+
+\subsection{Exported functionality}
+All the files which contains the exported functionality are named the same as the corresponding file in the HElib library with a \_python abbreviation for simplicity sake. In addition to the files shown in the figure above an additional file is contained in the library which contains the conversion of different vectors, which allows for the handling of vectors in python. We will now take a look at the exported functionality in the HElib python library.
+
+\subsubsection{Ctxt}
+As previously mentioned the Ctxt module handles the ciphertexts and the arithmetic operations done on the ciphertext. In the Ctxt module we find three classes: Ctxt, CtxtPart and SHandle. The Ctxt class holds a single ciphertext which is a vector of ciphertexts parts where each part have a ``handle'' describing the secret-key polynomial. The CtxtPart class can also be used as a DoubleCRT object as CtxtPart is derived from DoubleCRT. When exporting the Ctxt class we only have to export the public variables and functions which we will be called directly, this means all functions and variables under the public section of the class. The SKHandle class is handled by the CtxtPart class which are handled by the Ctxt class. We wont do any direct calls to neither CtxtPart or the SKHandle class, meaning only the Ctxt class are exported. This also includes the functions which are declared outside the classes, which are mainly operations on the ciphertext like innerproduct and totalproduct.
+
+\subsubsection{EncryptedArray}
+In the EncryptedArray module the information about an FHEcontext are stored. It also supports encoding/decoding and encryption/decryption. In the module we find the classes EncryptedArrayBase, EncryptedArrayDerived, EncryptedArray, NewPlaintextArrayBase and NewPlaintextArray. The EncryptedArray class works as a wrapper around a smart pointer object to the EncryptedArrayBase object, where the EncryptedArrayBase is a virtual class and EncryptedArrayDerived is a derived class of EncryptedArrayBase. Of the three classes mentioned the EncryptedArray class is the only one exported as this works as the interface including the functions which will be called directly. The NewPlaintextArray class is mainly used to simplify testing, where the NewPlaintextArrayBase class is a virutal class. Functions which are used to perform operations on the NewPlaintextArray are exported along with functions used to encrypt/decrypt, encode/decode on the EncryptedArray.
+
+\subsubsection{FHE}
+The FHE module is used to handle the secret key and the public key. In the module we find the classes: KeySwitch, FHEPubkey and FHESecKey. The KeySwitch class is used to convert a ciphertext part with the respect to the secret-key's polynomials into a canonical ciphertext. In the examples/tests this class is never called directly and in the FHEPubKey we find keySwitching matrices represented as vectors in the private section. The FHEPubKey class handles the public-key while the FHESecKey which is a derived class of the FHEPubKey class handles the secret-key. Both of the classes are mainly used to generate and handle the secret/public - keys. The classes also contains key-switching and encrypt/decrypt functions which have not been exported, or used in the examples implemented.
+
+\subsubsection{FHEContext}
+The FHEContext class is used to handle the parameters of the objects in the higher levels of the library. The file only consists of a single class FHEContext with multiple functions to modify the context/parameters. A helper function which is used to set the parameters are also located in this file, which is called FindM(long k, long L, long c, long p, long s, long chosen\_m, bool verbose=false). This is the most interesting function in this file as it helps us used set the values for the parameters m(defining the m'th cyclotomic ring) and is used in all of the examples. k is the security parameter, L is the number of levels, c is the number of columns, p is the characteristic of the plaintext space, d is the embedding degree, s is at least that many plaintext slots, chosen\_m is the preselected value of m.
+
+\subsubsection{PAlgebra}
+The PAlgebra class contains the structure of $(Z/mZ)* /(p)$ and the quotient group $\mathbb{Z}_{m}^{*}/\left \langle 2 \right \rangle$. In the implemented examples the PAlgebra class is mainly used to get the factorization of $Phi_m(X) mod p^r$, which is used when initializing the EncryptedArray class. In the module we also find PAlgebraMod which is a wrapper for the PAlgebraModBase and provides direct access to the functions in the class.
+
+\newpage
+
+\subsubsection{Python vectors}
+As python are not familiar with the concept of vectors a converter has been created to inform python how these objects should be handled. In this file we find the converter for two different vectors, a standard long vector and a NTL:ZZX vector, which is a vector defined in the mathematical library which the HElib is using, NTL.
+
+\subsubsection{HElib Python mainfile}
+All of the sections describes above have their functionality exported in their own separate file making it easy to see how it corresponds to the original library and to minimize the memory consumption which occurs when exporting many classes. Each file have their own boost python module where the classes and functions are exported. Each file also have a corresponding header file declaring the export function located in the file. The mainfile consist of some helper functions which include a debug, timer, and some arithmetic functions. Within the boost python module in the mainfile all other modules located in the separate files are called.
